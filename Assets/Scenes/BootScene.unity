@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 661617125}
   - component: {fileID: 661617126}
   m_Layer: 0
-  m_Name: LoadWelcomeScene
+  m_Name: LoadMainScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initControl: {fileID: 384969304}
-  sceneName: WelcomeScene
+  sceneName: MainScene
   type: 0
   prelimMethodName: 
   doneMethodName: 
