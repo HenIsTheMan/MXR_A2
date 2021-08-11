@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -5,6 +6,9 @@ namespace MXR {
     [ExecuteAlways]
     internal sealed class WormBuilder: MonoBehaviour {
         #region Fields
+
+        [SerializeField]
+        private bool shldClearInEditMode;
 
         [SerializeField]
         private bool shldBuildInEditMode;
@@ -50,6 +54,7 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal WormBuilder(): base() {
+            shldClearInEditMode = false;
             shldBuildInEditMode = false;
             shldBuildInPlayMode = false;
 
@@ -93,6 +98,24 @@ namespace MXR {
                 BuildWorm();
             }
             shldBuildInEditMode = false;
+
+            if(!Application.isPlaying && shldClearInEditMode) {
+                List<GameObject> toBeDestroyed = new List<GameObject>();
+
+                foreach(Transform childTransform in rigTransform) {
+                    toBeDestroyed.Add(childTransform.gameObject);
+                }
+
+                foreach(Transform childTransform in headTransform) {
+                    toBeDestroyed.Add(childTransform.gameObject);
+                }
+
+                toBeDestroyed.ForEach(GO => DestroyImmediate(GO));
+
+                boneRenderer.transforms = new Transform[1];
+                boneRenderer.transforms[0] = headTransform;
+            }
+            shldClearInEditMode = false;
         }
 
         #endregion
