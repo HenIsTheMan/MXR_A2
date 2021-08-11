@@ -28,6 +28,12 @@ namespace MXR {
         private BoneRenderer boneRenderer;
 
         [SerializeField]
+        private float weight;
+
+        [SerializeField]
+        private float dampPosition;
+
+        [SerializeField]
         private float dampRotation;
 
         [SerializeField]
@@ -54,7 +60,11 @@ namespace MXR {
             dampedPrefab = null;
 
             boneRenderer = null;
+            weight = 0.0f;
+
+            dampPosition = 0.0f;
             dampRotation = 0.0f;
+
             amtOfBodySegments = 0;
             displacementBetweenBodySegments = Vector3.zero;
         }
@@ -97,6 +107,9 @@ namespace MXR {
             for(int i = 0; i < amtOfBodySegments; ++i) {
                 dampedTransformComponent = Instantiate(dampedPrefab, rigTransform).GetComponent<DampedTransform>();
                 dampedTransformComponent.data.sourceObject = wormPartTransform;
+
+                dampedTransformComponent.weight = weight;
+                dampedTransformComponent.data.dampPosition = dampPosition;
                 dampedTransformComponent.data.dampRotation = dampRotation;
 
                 wormPartTransform = Instantiate(bodySegmentPrefab, wormPartTransform).transform;
