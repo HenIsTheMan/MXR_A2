@@ -48,7 +48,7 @@ MonoBehaviour:
     m_ConstrainedObject: {fileID: 0}
     m_Source: {fileID: 0}
     m_DampPosition: 0
-    m_DampRotation: 0.5
+    m_DampRotation: 0.4
     m_MaintainAim: 1
   m_SourceObjectsGUIToggle: 1
   m_SettingsGUIToggle: 1

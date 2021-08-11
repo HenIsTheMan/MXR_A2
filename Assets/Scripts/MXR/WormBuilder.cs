@@ -2,12 +2,15 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
 namespace MXR {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     internal sealed class WormBuilder: MonoBehaviour {
         #region Fields
 
         [SerializeField]
-        private bool shldBuild;
+        private bool shldBuildInEditMode;
+
+        [Tooltip("Not Really Useful"), SerializeField]
+        private bool shldBuildInPlayMode;
 
         [SerializeField]
         private Transform rigTransform;
@@ -20,6 +23,12 @@ namespace MXR {
 
         [SerializeField]
         private GameObject dampedPrefab;
+
+        [SerializeField]
+        private BoneRenderer boneRenderer;
+
+        [SerializeField]
+        private float dampRotation;
 
         [SerializeField]
         private int amtOfBodySegments;
@@ -35,7 +44,8 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal WormBuilder(): base() {
-            shldBuild = false;
+            shldBuildInEditMode = false;
+            shldBuildInPlayMode = false;
 
             rigTransform = null;
             headTransform = null;
@@ -43,6 +53,8 @@ namespace MXR {
             bodySegmentPrefab = null;
             dampedPrefab = null;
 
+            boneRenderer = null;
+            dampRotation = 0.0f;
             amtOfBodySegments = 0;
             displacementBetweenBodySegments = Vector3.zero;
         }
@@ -54,21 +66,46 @@ namespace MXR {
 
         #region Unity User Callback Event Funcs
 
-        private void Update() {
-            if(shldBuild) {
-                Transform wormPartTransform = headTransform;
-                DampedTransform dampedTransform;
-
-                for(int i = 0; i < amtOfBodySegments; ++i) {
-                    dampedTransform = Instantiate(dampedPrefab, rigTransform).GetComponent<DampedTransform>();
-
-                    wormPartTransform = Instantiate(bodySegmentPrefab, wormPartTransform).transform;
-                    wormPartTransform.localPosition = displacementBetweenBodySegments;
-                }
+        private void Awake() {
+            if(Application.isPlaying && shldBuildInPlayMode) {
+                BuildWorm();
+                shldBuildInPlayMode = false;
             }
-            shldBuild = false;
+
+            if(!Application.isPlaying && shldBuildInEditMode) {
+                BuildWorm();
+                shldBuildInEditMode = false;
+            }
+        }
+
+        private void Update() {
+            if(!Application.isPlaying && shldBuildInEditMode) {
+                BuildWorm();
+            }
+            shldBuildInEditMode = false;
         }
 
         #endregion
+
+        private void BuildWorm() {
+            boneRenderer.transforms = new Transform[amtOfBodySegments + 1];
+            boneRenderer.transforms[0] = headTransform;
+
+            Transform wormPartTransform = headTransform;
+            DampedTransform dampedTransformComponent;
+
+            for(int i = 0; i < amtOfBodySegments; ++i) {
+                dampedTransformComponent = Instantiate(dampedPrefab, rigTransform).GetComponent<DampedTransform>();
+                dampedTransformComponent.data.sourceObject = wormPartTransform;
+                dampedTransformComponent.data.dampRotation = dampRotation;
+
+                wormPartTransform = Instantiate(bodySegmentPrefab, wormPartTransform).transform;
+                wormPartTransform.localPosition = displacementBetweenBodySegments;
+
+                boneRenderer.transforms[i + 1] = wormPartTransform;
+
+                dampedTransformComponent.data.constrainedObject = wormPartTransform;
+            }
+        }
     }
 }
