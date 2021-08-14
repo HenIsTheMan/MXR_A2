@@ -68,20 +68,24 @@ namespace MXR.General {
 
             switch(alignment) {
                 case Alignment.TopLeft:
-                    terrain.transform.localPosition = Vector3.zero;
+                    terrain.transform.localPosition = new Vector3(
+                        0.0f,
+                        terrainLocalPosY,
+                        -terrainSize.z
+                    );
                     break;
                 case Alignment.TopCenter:
                     terrain.transform.localPosition = new Vector3(
                         -terrainSizeHalved.x,
                         terrainLocalPosY,
-                        0.0f
+                        -terrainSize.z
                     );
                     break;
                 case Alignment.TopRight:
                     terrain.transform.localPosition = new Vector3(
                         -terrainSize.x,
                         terrainLocalPosY,
-                        0.0f
+                        -terrainSize.z
                     );
                     break;
                 case Alignment.MiddleLeft:
@@ -106,24 +110,20 @@ namespace MXR.General {
                     );
                     break;
                 case Alignment.BottomLeft:
-                    terrain.transform.localPosition = new Vector3(
-                        0.0f,
-                        terrainLocalPosY,
-                        -terrainSize.z
-                    );
+                    terrain.transform.localPosition = Vector3.zero;
                     break;
                 case Alignment.BottomCenter:
                     terrain.transform.localPosition = new Vector3(
                         -terrainSizeHalved.x,
                         terrainLocalPosY,
-                        -terrainSize.z
+                        0.0f
                     );
                     break;
                 case Alignment.BottomRight:
                     terrain.transform.localPosition = new Vector3(
                         -terrainSize.x,
                         terrainLocalPosY,
-                        -terrainSize.z
+                        0.0f
                     );
                     break;
             }
