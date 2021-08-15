@@ -1683,8 +1683,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttribs: {fileID: 1253666295}
+  xLocalEulerAngleMinMax: {x: -40, y: 40}
+  yLocalEulerAngleMinMax: {x: -180, y: 180}
   zLocalEulerAngleMinMax: {x: -24, y: 24}
-  targetRotationZMultiplier: 1
+  targetRotationXMultiplier: 40
+  targetRotationYMultiplier: 40
+  targetRotationZMultiplier: 40
 --- !u!114 &1253666295
 MonoBehaviour:
   m_ObjectHideFlags: 0

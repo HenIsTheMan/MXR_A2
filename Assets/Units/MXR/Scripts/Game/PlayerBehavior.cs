@@ -11,7 +11,19 @@ namespace MXR {
         private PlayerAttribs playerAttribs;
 
         [SerializeField]
+        private Vector2 xLocalEulerAngleMinMax;
+
+        [SerializeField]
+        private Vector2 yLocalEulerAngleMinMax;
+
+        [SerializeField]
         private Vector2 zLocalEulerAngleMinMax;
+
+        [SerializeField]
+        private float targetRotationXMultiplier;
+
+        [SerializeField]
+        private float targetRotationYMultiplier;
 
         [SerializeField]
         private float targetRotationZMultiplier;
@@ -26,7 +38,13 @@ namespace MXR {
         internal PlayerBehavior(): base() {
             eulerAngles = Vector3.zero;
             playerAttribs = null;
+
+            xLocalEulerAngleMinMax = Vector2.zero;
+            yLocalEulerAngleMinMax = Vector2.zero;
             zLocalEulerAngleMinMax = Vector2.zero;
+
+            targetRotationXMultiplier = 0.0f;
+            targetRotationYMultiplier = 0.0f;
             targetRotationZMultiplier = 0.0f;
         }
 
@@ -38,7 +56,15 @@ namespace MXR {
         #region Unity User Callback Event Funcs
 
         private void Awake() {
-            eulerAngles = transform.localEulerAngles;
+            eulerAngles = Application.isEditor
+                ? transform.localEulerAngles
+                : CardboardHeadTracker.trackerUnityRotation.eulerAngles;
+
+            //if(targetRotY > 360.0f) {
+            //    targetRotY -= 360.0f;
+            //} else if(targetRotY < -360.0f) {
+            //    targetRotY += 360.0f;
+            //}
         }
 
         private void Update() {
@@ -50,7 +76,7 @@ namespace MXR {
                 * Time.deltaTime;
 
             if(Application.isEditor) {
-                if(Input.GetMouseButton(0)) {
+                if(Input.GetMouseButton(1)) {
                     SimulatePlayerRotation();
                 }
             } else{
@@ -59,21 +85,23 @@ namespace MXR {
         }
 
         private void SimulatePlayerRotation() {
-			float targetRotX = eulerAngles.x - GetMouseY();
-			if(targetRotX < 90.0f || targetRotX > -90.0f) {
-				eulerAngles.x = targetRotX;
-			}
+            eulerAngles.x = Mathf.Clamp(
+                eulerAngles.x - GetMouseY() * targetRotationXMultiplier * Time.deltaTime,
+                xLocalEulerAngleMinMax.x,
+                xLocalEulerAngleMinMax.y
+            );
 
-			float targetRotY = eulerAngles.y + GetMouseX();
-			if(targetRotY > 360.0f) {
-				targetRotY -= 360.0f;
-			} else if(targetRotY < -360.0f) {
-				targetRotY += 360.0f;
-			}
-			eulerAngles.y = targetRotY;
+            eulerAngles.y = Mathf.Clamp(
+                eulerAngles.y + GetMouseX() * targetRotationYMultiplier * Time.deltaTime,
+                yLocalEulerAngleMinMax.x,
+                yLocalEulerAngleMinMax.y
+            );
 
-			float targetRotZ = eulerAngles.z - GetMouseX() * targetRotationZMultiplier;
-            eulerAngles.z = Mathf.Clamp(targetRotZ, zLocalEulerAngleMinMax.x, zLocalEulerAngleMinMax.y);
+            eulerAngles.z = Mathf.Clamp(
+                eulerAngles.z - GetMouseX() * targetRotationZMultiplier * Time.deltaTime,
+                zLocalEulerAngleMinMax.x,
+                zLocalEulerAngleMinMax.y
+            );
 
             transform.localEulerAngles = eulerAngles;
         }
@@ -88,8 +116,8 @@ namespace MXR {
 
         private void PlayerRotation() {
             CardboardHeadTracker.UpdatePose();
-            transform.localPosition = CardboardHeadTracker.trackerUnityPosition;
-            transform.localRotation = CardboardHeadTracker.trackerUnityRotation;
+            //transform.localPosition = CardboardHeadTracker.trackerUnityPosition;
+            //transform.localRotation = ;
         }
 
         #endregion
