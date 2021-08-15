@@ -45,14 +45,6 @@ namespace IWP.General {
 		private bool showUnscaledElapsedTime;
 
 		[SerializeField]
-		private bool showPing;
-
-		#if USING_MIRROR
-			[SerializeField]
-			private bool showTimeSD;
-		#endif
-
-		[SerializeField]
 		private int dpForFPS;
 
 		[SerializeField]
@@ -63,14 +55,6 @@ namespace IWP.General {
 
 		[SerializeField]
 		private int dpForUnscaledElapsedTime;
-
-		[SerializeField]
-		private int dpForPing;
-
-		#if USING_MIRROR
-			[SerializeField]
-			private int dpForTimeSD;
-		#endif
 
 		[SerializeField]
 		private string fpsFrontText;
@@ -110,7 +94,6 @@ namespace IWP.General {
 			showUnscaledFPS = true;
 			showElapsedTime = true;
 			showUnscaledElapsedTime = true;
-			showPing = true;
 
 			#if USING_MIRROR
 				showTimeSD = true;
@@ -120,7 +103,6 @@ namespace IWP.General {
 			dpForUnscaledFPS = 2;
 			dpForElapsedTime = 2;
 			dpForUnscaledElapsedTime = 2;
-			dpForPing = 2;
 
 			#if USING_MIRROR
 				dpForTimeSD = 2;
