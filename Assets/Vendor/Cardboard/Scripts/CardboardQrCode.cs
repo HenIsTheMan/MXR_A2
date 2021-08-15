@@ -174,7 +174,7 @@ namespace MobfishCardboard
         {
             CardboardQrCode_getSavedDeviceParams(ref _encodedDeviceParams, ref _paramsSize);
 
-            Debug.Log("CardboardQrCode.RetrieveDeviceParam() size=" + _paramsSize);
+            //Debug.Log("CardboardQrCode.RetrieveDeviceParam() size=" + _paramsSize);
             encodedBytes = ReadByteArray(_encodedDeviceParams, _paramsSize);
 
             if (_paramsSize > 0)
@@ -182,8 +182,8 @@ namespace MobfishCardboard
 
             // Debug.LogFormat("CardboardQrCode.RetrieveDeviceParam() params length={0}, byte=\r\n {1}",
             //     encodedBytes.Length, string.Join(" , ", encodedBytes));
-            Debug.LogFormat("CardboardQrCode.RetrieveDeviceParam() decode device params: \r\n{0}",
-                CardboardUtility.DeviceParamsToString(decodedParams));
+            //Debug.LogFormat("CardboardQrCode.RetrieveDeviceParam() decode device params: \r\n{0}",
+                //CardboardUtility.DeviceParamsToString(decodedParams));
         }
 
         public static void RetrieveCardboardDeviceV1Params()
