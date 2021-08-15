@@ -6,10 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Units/MXR/BootScene.unity
-    guid: 4e3a09f746d188849a1021139e345921
+    path: Assets/Demo/SceneDemo.unity
+    guid: e77ae6e9692e5494987fc697ef66dc01
   - enabled: 1
-    path: Assets/Units/MXR/GameScene.unity
-    guid: 01b6e8dd76cf9b849a6f66a293103d54
-  m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ed77d020778bcbe4eb0bb886054be31c, type: 2}
+    path: Assets/Demo/SceneCardboardRoom.unity
+    guid: a31348365efda444c9566a7a112cb3b3
+  m_configObjects: {}
