@@ -3,17 +3,14 @@ using UnityEngine;
 namespace MXR {
     internal sealed class PlayerAttribs: MonoBehaviour { //POD
         #region Fields
-
-        [SerializeField]
-        private float spd;
-
         #endregion
 
         #region Properties
 
+        [field: SerializeField]
         internal float Spd {
-            get => spd;
-            private set => spd = value;
+            get;
+            private set;
         }
 
         #endregion
@@ -21,7 +18,7 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal PlayerAttribs(): base() {
-            spd = 0.0f;
+            Spd = 0.0f;
         }
 
         static PlayerAttribs() {
