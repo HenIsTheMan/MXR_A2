@@ -1686,6 +1686,7 @@ MonoBehaviour:
   camTransform: {fileID: 1276837804}
   camDist: 4
   camYOffset: 1
+  camPosSmoothingFactor: 4
 --- !u!114 &1253666295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,7 +1699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416b812ecad9f12458fa40046454bfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Spd>k__BackingField: 0.4
+  <Spd>k__BackingField: 4
 --- !u!1 &1253982070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b06ffe20efcb740ba291cd0269b842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 1253666293}
 --- !u!114 &1276837809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1912,7 +1913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6819359f895341b439730b3ec69a1f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 1253666293}
 --- !u!114 &1276837810
 MonoBehaviour:
   m_ObjectHideFlags: 0

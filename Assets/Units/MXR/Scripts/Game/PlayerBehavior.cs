@@ -1,4 +1,5 @@
 using MobfishCardboard;
+using MXR.Math;
 using UnityEngine;
 
 namespace MXR {
@@ -17,6 +18,9 @@ namespace MXR {
         [SerializeField]
         private float camYOffset;
 
+        [SerializeField]
+        private float camPosSmoothingFactor;
+
         #endregion
 
         #region Properties
@@ -31,6 +35,7 @@ namespace MXR {
 
             camDist = 0.0f;
             camYOffset = 0.0f;
+            camPosSmoothingFactor = 0.0f;
         }
 
         static PlayerBehavior() {
@@ -48,7 +53,11 @@ namespace MXR {
                 * playerAttribs.Spd
                 * Time.deltaTime;
 
-            camTransform.localPosition = transform.localPosition - playerDir * camDist + new Vector3(0.0f, camYOffset, 0.0f);
+            camTransform.localPosition = Val.Lerp(
+                camTransform.localPosition,
+                transform.localPosition - playerDir * camDist + new Vector3(0.0f, camYOffset, 0.0f),
+                Mathf.Min(1.0f, Time.deltaTime * camPosSmoothingFactor)
+            );
 
             camTransform.localRotation = Quaternion.FromToRotation(
                 Vector3.forward,
