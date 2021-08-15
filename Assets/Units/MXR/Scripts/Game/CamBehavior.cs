@@ -9,7 +9,7 @@ namespace MXR {
         private Transform camTransform;
 
         [SerializeField]
-        private float camDist;
+        private float camHorizontalDist;
 
         [SerializeField]
         private float camYOffset;
@@ -33,7 +33,7 @@ namespace MXR {
         internal CamBehavior(): base() {
             camTransform = null;
 
-            camDist = 0.0f;
+            camHorizontalDist = 0.0f;
             camYOffset = 0.0f;
 
             camPosSmoothingFactor = 0.0f;
@@ -52,15 +52,15 @@ namespace MXR {
         private void LateUpdate() {
             camTransform.localPosition = Val.Lerp(
                 camTransform.localPosition,
-                transform.localPosition - playerAttribs.Dir * camDist + new Vector3(0.0f, camYOffset, 0.0f),
+                playerAttribs.MyTransform.localPosition - playerAttribs.Dir * camHorizontalDist + new Vector3(0.0f, camYOffset, 0.0f),
                 Time.deltaTime * camPosSmoothingFactor
             );
 
-            camTransform.localRotation = Val.Slerp(
+            camTransform.localRotation = Quaternion.Lerp(
                 camTransform.localRotation,
                 Quaternion.FromToRotation(
                     Vector3.forward,
-                    Vector3.Normalize(transform.localPosition - camTransform.localPosition)
+                    Vector3.Normalize(playerAttribs.MyTransform.localPosition - camTransform.localPosition)
                 ),
                 Time.deltaTime * camRotationSmoothingFactor
             );

@@ -1683,10 +1683,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttribs: {fileID: 1253666295}
-  camTransform: {fileID: 1276837804}
-  camDist: 4
-  camYOffset: 1
-  camPosSmoothingFactor: 4
 --- !u!114 &1253666295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,6 +1695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416b812ecad9f12458fa40046454bfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <MyTransform>k__BackingField: {fileID: 1253666293}
   <Spd>k__BackingField: 4
 --- !u!1 &1253982070
 GameObject:
@@ -1832,8 +1829,7 @@ GameObject:
   - component: {fileID: 1276837807}
   - component: {fileID: 1276837805}
   - component: {fileID: 1276837810}
-  - component: {fileID: 1276837809}
-  - component: {fileID: 1276837808}
+  - component: {fileID: 1276837806}
   m_Layer: 0
   m_Name: Others
   m_TagString: Untagged
@@ -1871,6 +1867,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shldCallInStart: 1
+--- !u!114 &1276837806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276837803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da693175af9364409d67f944afed61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 1276837804}
+  camHorizontalDist: 4
+  camYOffset: 1
+  camPosSmoothingFactor: 4
+  camRotationSmoothingFactor: 4
+  playerAttribs: {fileID: 1253666295}
 --- !u!114 &1276837807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,32 +1902,6 @@ MonoBehaviour:
   closeButton: {fileID: 1253982072}
   splitLine: {fileID: 1163798735}
   dontDestroyAndSingleton: 0
---- !u!114 &1276837808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276837803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b06ffe20efcb740ba291cd0269b842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTransform: {fileID: 1253666293}
---- !u!114 &1276837809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276837803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6819359f895341b439730b3ec69a1f4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTransform: {fileID: 1253666293}
 --- !u!114 &1276837810
 MonoBehaviour:
   m_ObjectHideFlags: 0

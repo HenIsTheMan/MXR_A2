@@ -1,5 +1,4 @@
 using MobfishCardboard;
-using MXR.Math;
 using UnityEngine;
 
 namespace MXR {
@@ -8,18 +7,6 @@ namespace MXR {
 
         [SerializeField]
         private PlayerAttribs playerAttribs;
-
-        [SerializeField]
-        private Transform camTransform;
-
-        [SerializeField]
-        private float camDist;
-
-        [SerializeField]
-        private float camYOffset;
-
-        [SerializeField]
-        private float camPosSmoothingFactor;
 
         #endregion
 
@@ -30,12 +17,6 @@ namespace MXR {
 
         internal PlayerBehavior(): base() {
             playerAttribs = null;
-
-            camTransform = null;
-
-            camDist = 0.0f;
-            camYOffset = 0.0f;
-            camPosSmoothingFactor = 0.0f;
         }
 
         static PlayerBehavior() {
@@ -46,31 +27,55 @@ namespace MXR {
         #region Unity User Callback Event Funcs
 
         private void Update() {
-            Vector3 playerDir = Vector3.Normalize(transform.rotation * Vector3.forward);
+            playerAttribs.Dir = Vector3.Normalize(transform.rotation * Vector3.forward);
 
             transform.localPosition
-                += playerDir
+                += playerAttribs.Dir
                 * playerAttribs.Spd
                 * Time.deltaTime;
 
-            camTransform.localPosition = Val.Lerp(
-                camTransform.localPosition,
-                transform.localPosition - playerDir * camDist + new Vector3(0.0f, camYOffset, 0.0f),
-                Mathf.Min(1.0f, Time.deltaTime * camPosSmoothingFactor)
-            );
+            if(Application.isEditor) {
+                if(Input.GetMouseButton(0)) {
+                    SimulatePlayerRotation();
+                }
+            } else{
+                PlayerRotation();
+            }
+        }
 
-            camTransform.localRotation = Quaternion.FromToRotation(
-                Vector3.forward,
-                Vector3.Normalize(transform.localPosition - camTransform.localPosition)
-            );
+        private void SimulatePlayerRotation() {
+            Vector3 eulerAngles = transform.localEulerAngles;
 
-            //Vector3 eulerAngles = CardboardHeadTracker.trackerRawRotation.eulerAngles;
-            //transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
-            //= Quaternion.Euler(
-            //    0.0f,
-            //    Mathf.Atan2((CardboardHeadTracker.trackerUnityRotation.eulerAngles * Vector3.forward).y, 1.0f),
-            //    0.0f
-            //);
+            float targetRotX = eulerAngles.x - GetMouseY();
+            if(targetRotX < 90.0f || targetRotX > -90.0f) {
+                eulerAngles.x = targetRotX;
+            }
+
+            float targetRotY = eulerAngles.y + GetMouseX();
+            if(targetRotY > 360.0f) {
+                targetRotY -= 360.0f;
+            } else if(targetRotY < -360.0f) {
+                targetRotY += 360.0f;
+            }
+            eulerAngles.y = targetRotY;
+
+            eulerAngles.z = Mathf.Min(24.0f, eulerAngles.z - GetMouseY());
+
+            transform.localEulerAngles = eulerAngles;
+        }
+
+        private float GetMouseX() {
+            return Input.GetAxis("Mouse X");
+        }
+
+        private float GetMouseY() {
+            return Input.GetAxis("Mouse Y");
+        }
+
+        private void PlayerRotation() {
+            CardboardHeadTracker.UpdatePose();
+            transform.localPosition = CardboardHeadTracker.trackerUnityPosition;
+            transform.localRotation = CardboardHeadTracker.trackerUnityRotation;
         }
 
         #endregion
