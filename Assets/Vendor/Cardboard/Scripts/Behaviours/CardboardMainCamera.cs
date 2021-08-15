@@ -102,7 +102,7 @@ namespace MobfishCardboard
             };
 
             #if UNITY_2019_1_OR_NEWER
-            eyeRenderTextureDesc.graphicsFormat = SystemInfo.GetGraphicsFormat(DefaultFormat.LDR);
+            eyeRenderTextureDesc.graphicsFormat = SystemInfo.GetGraphicsFormat(DefaultFormat.HDR);
             Debug.LogFormat("CardboardMainCamera.SetupEyeRenderTextureDescription(), graphicsFormat={0}",
                 eyeRenderTextureDesc.graphicsFormat);
 
