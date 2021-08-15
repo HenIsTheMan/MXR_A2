@@ -120,7 +120,11 @@ Shader "MyUnlitShaders/FresnelUnlitShader" {
                 }
 
                 fixed4 FragMain(FragInputData fragInputData): SV_Target {
+                #if UNITY_SINGLE_PASS_STEREO
+                    fixed4 color = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(fragInputData.texCoords0, _MainTex_ST));
+                #else
                     fixed4 color = tex2D(_MainTex, fragInputData.texCoords0);
+                #endif
                     color *= _Color;
 
                     float fresnel = dot(fragInputData.worldNormal, fragInputData.viewDir);
