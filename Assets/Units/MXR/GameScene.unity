@@ -1800,7 +1800,7 @@ GameObject:
   - component: {fileID: 1276837807}
   - component: {fileID: 1276837805}
   - component: {fileID: 1276837806}
-  - component: {fileID: 1276837809}
+  - component: {fileID: 1276837808}
   m_Layer: 0
   m_Name: Others
   m_TagString: Untagged
@@ -1874,7 +1874,7 @@ MonoBehaviour:
   closeButton: {fileID: 1253982072}
   splitLine: {fileID: 1163798735}
   dontDestroyAndSingleton: 0
---- !u!114 &1276837809
+--- !u!114 &1276837808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1883,10 +1883,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1276837803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32aa445531af8fb41883fc55f368d46d, type: 3}
+  m_Script: {fileID: 11500000, guid: c2b06ffe20efcb740ba291cd0269b842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 1253666293}
 --- !u!1 &1311219923
 GameObject:
   m_ObjectHideFlags: 0
