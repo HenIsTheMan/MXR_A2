@@ -257,6 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1302055290}
   - component: {fileID: 1302055294}
+  - component: {fileID: 1302055295}
   - component: {fileID: 1302055292}
   - component: {fileID: 1302055291}
   - component: {fileID: 1302055293}
@@ -346,6 +347,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5473130671261944969, guid: d76be9d76e312474aaecb934ae1c2527, type: 3}
   myName: AudioListener
+  pos: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0, w: 1}
+  parentTransform: {fileID: 0}
+--- !u!114 &1302055295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302055289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7fb56aa4648342b23326e7662aac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5612222903402971655, guid: 0ef397ac24fc32f429cd7de306ad4df7, type: 3}
+  myName: DebugText
   pos: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   parentTransform: {fileID: 0}
