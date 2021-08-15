@@ -147,7 +147,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.mobfish.CardboardVRUnity
-    Standalone: net.mobfish.cardboard
+    Standalone: com.mobfish.Cardboard-VR-Unity
     iPhone: net.mobfish.cardboard
   buildNumber:
     Standalone: 0
