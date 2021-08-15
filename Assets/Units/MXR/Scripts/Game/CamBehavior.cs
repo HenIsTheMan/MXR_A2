@@ -56,7 +56,7 @@ namespace MXR {
                 Time.deltaTime * camPosSmoothingFactor
             );
 
-            camTransform.localRotation = Quaternion.Lerp(
+            Quaternion rotation = Quaternion.Lerp(
                 camTransform.localRotation,
                 Quaternion.FromToRotation(
                     Vector3.forward,
@@ -64,6 +64,14 @@ namespace MXR {
                 ),
                 Time.deltaTime * camRotationSmoothingFactor
             );
+
+            rotation = Quaternion.Lerp(
+                rotation,
+                Quaternion.Euler(0.0f, 0.0f, playerAttribs.MyTransform.localEulerAngles.z) * rotation,
+                Time.deltaTime * camRotationSmoothingFactor
+            );
+
+            camTransform.localRotation = rotation;
         }
 
         #endregion
