@@ -13,8 +13,7 @@ namespace MXR {
                 enabled = false;
         }
 
-        // Update is called once per frame
-        void Update() {
+        private void Update() {
             if(GetKeyRotate()) {
                 Vector3 currentEulerAngle = targetTransform.localEulerAngles;
                 float targetRotX = currentEulerAngle.x - GetMouseY();
