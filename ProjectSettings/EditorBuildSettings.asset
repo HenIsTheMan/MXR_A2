@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Units/MXR/SceneDemo.unity
-    guid: c77502ddc12c40d41a71ee6734a840fd
+    path: Assets/Units/MXR/BootScene.unity
+    guid: 4e3a09f746d188849a1021139e345921
   - enabled: 1
-    path: Assets/Units/MXR/SceneCardboardRoom.unity
-    guid: 81f9db6491e0de647ae37986a9d886a1
+    path: Assets/Units/MXR/GameScene.unity
+    guid: c77502ddc12c40d41a71ee6734a840fd
   m_configObjects: {}
