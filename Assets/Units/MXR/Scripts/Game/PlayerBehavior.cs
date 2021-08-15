@@ -1,4 +1,5 @@
 using MobfishCardboard;
+using MXR.Math;
 using UnityEngine;
 
 namespace MXR {
@@ -7,6 +8,12 @@ namespace MXR {
 
         [SerializeField]
         private PlayerAttribs playerAttribs;
+
+        [SerializeField]
+        private Vector2 zLocalEulerAngleMinMax;
+
+        [SerializeField]
+        private float targetRotationZMultiplier;
 
         #endregion
 
@@ -17,6 +24,8 @@ namespace MXR {
 
         internal PlayerBehavior(): base() {
             playerAttribs = null;
+            zLocalEulerAngleMinMax = Vector2.zero;
+            targetRotationZMultiplier = 0.0f;
         }
 
         static PlayerBehavior() {
@@ -46,20 +55,21 @@ namespace MXR {
         private void SimulatePlayerRotation() {
             Vector3 eulerAngles = transform.localEulerAngles;
 
-            float targetRotX = eulerAngles.x - GetMouseY();
-            if(targetRotX < 90.0f || targetRotX > -90.0f) {
-                eulerAngles.x = targetRotX;
-            }
+			float targetRotX = eulerAngles.x - GetMouseY();
+			if(targetRotX < 90.0f || targetRotX > -90.0f) {
+				eulerAngles.x = targetRotX;
+			}
 
-            float targetRotY = eulerAngles.y + GetMouseX();
-            if(targetRotY > 360.0f) {
-                targetRotY -= 360.0f;
-            } else if(targetRotY < -360.0f) {
-                targetRotY += 360.0f;
-            }
-            eulerAngles.y = targetRotY;
+			float targetRotY = eulerAngles.y + GetMouseX();
+			if(targetRotY > 360.0f) {
+				targetRotY -= 360.0f;
+			} else if(targetRotY < -360.0f) {
+				targetRotY += 360.0f;
+			}
+			eulerAngles.y = targetRotY;
 
-            eulerAngles.z = Mathf.Min(24.0f, eulerAngles.z - GetMouseY());
+			float targetRotZ = eulerAngles.z - GetMouseX() * targetRotationZMultiplier;
+            eulerAngles.z = Mathf.Clamp(targetRotZ, zLocalEulerAngleMinMax.x, zLocalEulerAngleMinMax.y);
 
             transform.localEulerAngles = eulerAngles;
         }
