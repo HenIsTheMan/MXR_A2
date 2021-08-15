@@ -1,10 +1,11 @@
 using MobfishCardboard;
-using MXR.Math;
 using UnityEngine;
 
 namespace MXR {
     internal sealed class PlayerBehavior: MonoBehaviour {
         #region Fields
+
+        private Vector3 eulerAngles;
 
         [SerializeField]
         private PlayerAttribs playerAttribs;
@@ -23,6 +24,7 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal PlayerBehavior(): base() {
+            eulerAngles = Vector3.zero;
             playerAttribs = null;
             zLocalEulerAngleMinMax = Vector2.zero;
             targetRotationZMultiplier = 0.0f;
@@ -34,6 +36,10 @@ namespace MXR {
         #endregion
 
         #region Unity User Callback Event Funcs
+
+        private void Awake() {
+            eulerAngles = transform.localEulerAngles;
+        }
 
         private void Update() {
             playerAttribs.Dir = Vector3.Normalize(transform.rotation * Vector3.forward);
@@ -53,8 +59,6 @@ namespace MXR {
         }
 
         private void SimulatePlayerRotation() {
-            Vector3 eulerAngles = transform.localEulerAngles;
-
 			float targetRotX = eulerAngles.x - GetMouseY();
 			if(targetRotX < 90.0f || targetRotX > -90.0f) {
 				eulerAngles.x = targetRotX;
