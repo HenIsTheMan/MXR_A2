@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c964973cff25242b9077fc0f8510f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 1280
-  height: 720
+  width: 1920
+  height: 1080
   mode: 3
   preferredRefreshRate: 0
   newWindowTitle: 
@@ -444,10 +444,10 @@ MonoBehaviour:
   showMsg: 1
   showLogType: 0
   showStackTrace: 0
-  xOffset: 20
-  yOffset: 20
-  widthOffset: -40
-  heightOffset: -40
+  xOffset: 80
+  yOffset: 80
+  widthOffset: -160
+  heightOffset: -160
   bgColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   contentColor: {r: 0, g: 1, b: 0, a: 1}
   fontSize: 14

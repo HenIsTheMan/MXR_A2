@@ -1,6 +1,7 @@
 ﻿using MobfishCardboard;
 using UnityEngine;
 using UnityEngine.UI;
+using static MXR.General.ScreenModes;
 
 namespace MXR {
     public class GoogleCardboardUIOverlay: MonoBehaviour {
@@ -56,6 +57,18 @@ namespace MXR {
 
         private void SwitchVRView() {
             CardboardManager.SetVRViewEnable(!CardboardManager.enableVRView);
+
+            _ = StartCoroutine(Test());
+        }
+
+        System.Collections.IEnumerator Test() {
+            General.Console.Log("TestStart");
+
+            yield return new WaitForSeconds(4.0f);
+
+			General.Console.Log("TestSuccess!");
+
+            General.ScreenManager.globalObj.SetScreenRes(1280, 720, ScreenMode.Windowed);
         }
 
         private void CloseVRView() {

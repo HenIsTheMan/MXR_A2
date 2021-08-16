@@ -29,7 +29,7 @@ namespace MXR {
         private bool overlayIsOpen;
 
         private void Awake() {
-            Application.targetFrameRate = CardboardUtility.GetTargetFramerate();
+            Application.targetFrameRate = 60;
 
             if(dontDestroyAndSingleton) {
                 if(instance == null) {
@@ -74,8 +74,8 @@ namespace MXR {
             Vector2Int resolution = CardboardUtility.GetAdjustedScreenResolution();
             eyeRenderTextureDesc = new RenderTextureDescriptor() {
                 dimension = TextureDimension.Tex2D,
-                width = resolution.x / 2,
-                height = resolution.y,
+                width = 1280 / 2,
+                height = 720,
                 depthBufferBits = 16,
                 volumeDepth = 1,
                 msaaSamples = 1,
