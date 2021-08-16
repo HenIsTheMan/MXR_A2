@@ -56,15 +56,7 @@ namespace MXR {
         #region Unity User Callback Event Funcs
 
         private void Awake() {
-            eulerAngles = Application.isEditor
-                ? transform.localEulerAngles
-                : CardboardHeadTracker.trackerUnityRotation.eulerAngles;
-
-            //if(targetRotY > 360.0f) {
-            //    targetRotY -= 360.0f;
-            //} else if(targetRotY < -360.0f) {
-            //    targetRotY += 360.0f;
-            //}
+            eulerAngles = transform.localEulerAngles;
         }
 
         private void Update() {
@@ -120,7 +112,7 @@ namespace MXR {
         private void PlayerRotation() {
             CardboardHeadTracker.UpdatePose();
             //transform.localPosition = CardboardHeadTracker.trackerUnityPosition;
-            //transform.localRotation = ;
+            transform.localRotation = CardboardHeadTracker.trackerUnityRotation;
         }
 
         #endregion
