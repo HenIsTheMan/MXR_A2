@@ -23,6 +23,11 @@ namespace MXR {
             set;
         }
 
+        internal Vector3 Dir {
+            private get;
+            set;
+        }
+
         #endregion
 
         #region Ctors and Dtor
@@ -46,17 +51,21 @@ namespace MXR {
         }
 
         private void FixedUpdate() {
-            Vector3 oldPos = myTransform.position;
-            myTransform.position += myTransform.forward * bulletProjectileData.Spd * Time.fixedDeltaTime;
+			Vector3 oldPos = myTransform.position;
 
-            if(Physics.Linecast(oldPos, myTransform.position, out RaycastHit hitInfo, ~ignoreMe, QueryTriggerInteraction.Ignore)) {
-                BulletPool.DeactivateObj(gameObject);
+            bulletProjectileData.Spd += bulletProjectileData.AccelFactor * Time.fixedDeltaTime;
+            bulletProjectileData.Spd = Mathf.Clamp(bulletProjectileData.Spd, bulletProjectileData.MinSpd, bulletProjectileData.MaxSpd);
 
-                if(hitInfo.transform.CompareTag("Boss")) {
-                    Console.Log("Hit!");
-                }
-            }
-        }
+            myTransform.position += Dir * bulletProjectileData.Spd * Time.fixedDeltaTime;
+
+			if(Physics.Linecast(oldPos, myTransform.position, out RaycastHit hitInfo, ~ignoreMe, QueryTriggerInteraction.Ignore)) {
+				BulletPool.DeactivateObj(gameObject);
+
+				if(hitInfo.transform.CompareTag("Boss")) {
+					Console.Log("Hit!");
+				}
+			}
+		}
 
         #endregion
 
