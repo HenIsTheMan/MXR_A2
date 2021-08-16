@@ -93,8 +93,8 @@ namespace MXR {
             }
         }
 
-        private void OnTriggerEnter() {
-            General.Console.Log("here");
+        private void OnCollisionEnter() {
+            General.Console.Log("OnCollisionEnter()");
         }
 
         #endregion
