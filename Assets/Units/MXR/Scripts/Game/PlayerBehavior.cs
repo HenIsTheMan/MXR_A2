@@ -6,7 +6,6 @@ namespace MXR {
         #region Fields
 
         private Vector3 eulerAngles;
-        private Quaternion prevRotation;
 
         [SerializeField]
         private PlayerAttribs playerAttribs;
@@ -47,7 +46,6 @@ namespace MXR {
 
         internal PlayerBehavior(): base() {
             eulerAngles = Vector3.zero;
-            prevRotation = Quaternion.identity;
             playerAttribs = null;
 
             shldLimitX = true;
@@ -92,7 +90,6 @@ namespace MXR {
             } else {
                 CardboardHeadTracker.UpdatePose();
                 PlayerRotation();
-                prevRotation = CardboardHeadTracker.trackerUnityRotation;
             }
         }
 
@@ -135,25 +132,17 @@ namespace MXR {
                 return Input.GetAxis("Mouse Y");
             }
 
-            return (Angle0To360(CardboardHeadTracker.trackerUnityRotation.eulerAngles.x) - Angle0To360(prevRotation.eulerAngles.x)) / 180.0f - 1.0f;
+            CardboardHeadTracker.trackerUnityRotation.ToAngleAxis(out _, out Vector3 axis);
+            return -axis.x;
         }
 
         private float CalcTurnFactor() {
             if(Application.isEditor) {
                 return Input.GetAxis("Mouse X");
             }
-            
-            return (Angle0To360(CardboardHeadTracker.trackerUnityRotation.eulerAngles.z) - Angle0To360(prevRotation.eulerAngles.z)) / 180.0f - 1.0f;
-        }
 
-        private float Angle0To360(float angle) {
-            float result = angle - Mathf.CeilToInt(angle / 360.0f) * 360.0f;
-
-            if(result < 0.0f) {
-                result += 360.0f;
-            }
-
-            return result;
+            CardboardHeadTracker.trackerUnityRotation.ToAngleAxis(out _, out Vector3 axis);
+            return -axis.z;
         }
 
         #endregion
