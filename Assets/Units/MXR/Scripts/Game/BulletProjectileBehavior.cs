@@ -9,7 +9,7 @@ namespace MXR {
         private ProjectileData bulletProjectileData;
 
         [SerializeField]
-        private Transform myTransform;
+        internal Transform myTransform;
 
         [SerializeField]
         private LayerMask ignoreMe;

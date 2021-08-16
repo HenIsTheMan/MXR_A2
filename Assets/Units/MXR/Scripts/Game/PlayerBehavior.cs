@@ -93,6 +93,16 @@ namespace MXR {
             }
         }
 
+        private void Update() {
+            if(Input.GetMouseButtonDown(0)) { //Shoot
+                BulletProjectileBehavior bulletProjectileBehavior
+                    = playerAttribs.BulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
+
+                bulletProjectileBehavior.myTransform.position = transform.position;
+                bulletProjectileBehavior.BulletPool = playerAttribs.BulletPool;
+            }
+        }
+
         private void OnCollisionEnter() {
             General.Console.Log("OnCollisionEnter()");
         }
