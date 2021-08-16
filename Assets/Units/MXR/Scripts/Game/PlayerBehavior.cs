@@ -132,8 +132,8 @@ namespace MXR {
                 return Input.GetAxis("Mouse Y");
             }
 
-            CardboardHeadTracker.trackerUnityRotation.ToAngleAxis(out _, out Vector3 axis);
-            return -axis.x;
+            CardboardHeadTracker.trackerUnityRotation.ToAngleAxis(out float angle, out Vector3 axis);
+            return -axis.x * Mathf.Abs(angle) * 0.027f;
         }
 
         private float CalcTurnFactor() {
@@ -141,8 +141,18 @@ namespace MXR {
                 return Input.GetAxis("Mouse X");
             }
 
-            CardboardHeadTracker.trackerUnityRotation.ToAngleAxis(out _, out Vector3 axis);
-            return -axis.z;
+            CardboardHeadTracker.trackerUnityRotation.ToAngleAxis(out float angle, out Vector3 axis);
+            return -axis.z * Mathf.Abs(angle) * 0.027f;
+        }
+
+        private float Angle0To360(float angle) {
+            float result = angle - Mathf.CeilToInt(angle / 360.0f) * 360.0f;
+
+            if(result < 0.0f) {
+                result += 360.0f;
+            }
+
+            return result;
         }
 
         #endregion
