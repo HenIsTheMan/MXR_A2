@@ -65,13 +65,21 @@ namespace MXR {
                 Time.deltaTime * camRotationSmoothingFactor
             );
 
-            //rotation = Quaternion.Lerp(
-            //    rotation,
-            //    Quaternion.Euler(0.0f, 0.0f, playerAttribs.MyTransform.localEulerAngles.z) * rotation,
-            //    Time.deltaTime * camRotationSmoothingFactor
-            //);
+			//rotation = Quaternion.Lerp(
+   //             rotation,
+   //             Quaternion.FromToRotation(
+   //                 rotation * Vector3.up,
+   //                 playerAttribs.MyTransform.rotation * Vector3.up
+   //             ) * rotation,
+   //             Time.deltaTime * camRotationSmoothingFactor
+			//);
 
-            camTransform.localRotation = rotation;
+            rotation = Quaternion.FromToRotation(
+                rotation * Vector3.up,
+                playerAttribs.MyTransform.rotation * Vector3.up
+            ) * rotation;
+
+			camTransform.localRotation = rotation;
         }
 
         #endregion
