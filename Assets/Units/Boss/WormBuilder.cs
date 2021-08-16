@@ -1,5 +1,3 @@
-#if UNITY_EDITOR
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -84,6 +82,8 @@ namespace MXR {
         #region Unity User Callback Event Funcs
 
         private void Awake() {
+            #if UNITY_EDITOR
+
             if(Application.isPlaying && shldBuildInPlayMode) {
                 BuildWorm();
                 shldBuildInPlayMode = false;
@@ -93,9 +93,13 @@ namespace MXR {
                 BuildWorm();
                 shldBuildInEditMode = false;
             }
+
+            #endif
         }
 
         private void Update() {
+            #if UNITY_EDITOR
+
             if(!Application.isPlaying && shldBuildInEditMode) {
                 BuildWorm();
             }
@@ -118,11 +122,15 @@ namespace MXR {
                 boneRenderer.transforms[0] = headTransform;
             }
             shldClearInEditMode = false;
+
+            #endif
         }
 
         #endregion
 
         private void BuildWorm() {
+            #if UNITY_EDITOR
+
             boneRenderer.transforms = new Transform[amtOfBodySegments + 1];
             boneRenderer.transforms[0] = headTransform;
 
@@ -144,8 +152,8 @@ namespace MXR {
 
                 dampedTransformComponent.data.constrainedObject = wormPartTransform;
             }
+
+            #endif
         }
     }
 }
-
-#endif
