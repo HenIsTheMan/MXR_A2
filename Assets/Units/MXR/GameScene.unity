@@ -2494,6 +2494,13 @@ MonoBehaviour:
   dampRotation: 1
   amtOfBodySegments: 7
   displacementBetweenBodySegments: {x: 0, y: 0, z: -2}
+  extraSegments:
+  - displacement: {x: 0, y: 0, z: -1.23}
+    prefab: {fileID: 7413879478414617420, guid: ef3e3bafc8d21434f96493190dbadc48,
+      type: 3}
+  - displacement: {x: 0, y: 0, z: -1.32}
+    prefab: {fileID: 6763962221560465682, guid: 666c7fa79ee1a904eb7ec02e6f0e0b6f,
+      type: 3}
 --- !u!114 &1622418166
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,15 @@ using UnityEngine.Animations.Rigging;
 namespace MXR {
     [ExecuteAlways]
     internal sealed class WormBuilder: MonoBehaviour {
+        [System.Serializable]
+        private struct ExtraSegment {
+            [SerializeField]
+            internal Vector3 displacement;
+
+            [SerializeField]
+            internal GameObject prefab;
+        };
+
         #region Fields
 
         [SerializeField]
@@ -46,6 +55,9 @@ namespace MXR {
         [SerializeField]
         private Vector3 displacementBetweenBodySegments;
 
+        [SerializeField]
+        private ExtraSegment[] extraSegments;
+
         #endregion
 
         #region Properties
@@ -72,6 +84,8 @@ namespace MXR {
 
             amtOfBodySegments = 0;
             displacementBetweenBodySegments = Vector3.zero;
+
+            extraSegments = System.Array.Empty<ExtraSegment>();
         }
 
         static WormBuilder() {
@@ -151,6 +165,12 @@ namespace MXR {
                 boneRenderer.transforms[i + 1] = wormPartTransform;
 
                 dampedTransformComponent.data.constrainedObject = wormPartTransform;
+            }
+
+            int len = extraSegments.Length;
+            for(int i = 0; i < len; ++i) {
+                wormPartTransform = Instantiate(extraSegments[i].prefab, wormPartTransform).transform;
+                wormPartTransform.localPosition = extraSegments[i].displacement;
             }
 
             #endif
