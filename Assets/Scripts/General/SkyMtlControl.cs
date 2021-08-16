@@ -7,9 +7,6 @@ namespace MXR.General {
 		[SerializeField]
 		private float rotationVel;
 
-		[SerializeField]
-		private Material skyMtl;
-
 		#endregion
 
 		#region Properties
@@ -19,7 +16,6 @@ namespace MXR.General {
 
 		internal SkyMtlControl(): base() {
 			rotationVel = 0.0f;
-			skyMtl = null;
 		}
 
         static SkyMtlControl() {
@@ -30,11 +26,11 @@ namespace MXR.General {
 		#region Unity User Callback Event Funcs
 
 		private void FixedUpdate() {
-			skyMtl.SetFloat("_Rotation", Time.time * rotationVel);
+			RenderSettings.skybox.SetFloat("_Rotation", Time.fixedTime * rotationVel);
 		}
 
 		private void OnDisable() {
-			skyMtl.SetFloat("_Rotation", 0.0f);
+			RenderSettings.skybox.SetFloat("_Rotation", Time.fixedTime * rotationVel);
 		}
 
 		#endregion
