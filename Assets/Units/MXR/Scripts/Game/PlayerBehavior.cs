@@ -70,6 +70,9 @@ namespace MXR {
         private void Update() {
             playerAttribs.Dir = Vector3.Normalize(transform.rotation * Vector3.forward);
 
+            playerAttribs.Spd += playerAttribs.AccelFactor * Time.deltaTime;
+            playerAttribs.Spd = Mathf.Clamp(playerAttribs.Spd, playerAttribs.MinSpd, playerAttribs.MaxSpd);
+
             transform.localPosition
                 += playerAttribs.Dir
                 * playerAttribs.Spd

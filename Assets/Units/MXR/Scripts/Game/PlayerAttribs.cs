@@ -18,8 +18,25 @@ namespace MXR {
             private set;
         }
 
-        [field: SerializeField]
         internal float Spd {
+            get;
+            set;
+        }
+
+        [field: SerializeField]
+        internal float MinSpd {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal float MaxSpd {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal float AccelFactor {
             get;
             private set;
         }
@@ -31,7 +48,11 @@ namespace MXR {
         internal PlayerAttribs(): base() {
             Dir = Vector3.forward;
             MyTransform = null;
+
             Spd = 0.0f;
+            MinSpd = 0.0f;
+            MaxSpd = 0.0f;
+            AccelFactor = 0.0f;
         }
 
         static PlayerAttribs() {
@@ -40,6 +61,16 @@ namespace MXR {
         #endregion
 
         #region Unity User Callback Event Funcs
+
+        private void OnValidate() {
+            MinSpd = Mathf.Max(0.0f, MinSpd);
+            MaxSpd = Mathf.Max(0.0f, MaxSpd);
+        }
+
+        private void Awake() {
+            Spd = MinSpd;
+        }
+
         #endregion
     }
 }
