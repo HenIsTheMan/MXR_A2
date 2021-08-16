@@ -89,7 +89,7 @@ namespace MobfishCardboard
         [AOT.MonoPInvokeCallback(typeof(QRCodeScannedCallbackType))]
         private static void QRCodeScannedCallback(bool success)
         {
-            Debug.Log("QRCodeScannedCallback received in Unity!!");
+            //Debug.Log("QRCodeScannedCallback received in Unity!!");
             CardboardManager.RefreshParameters();
 
             if (GetQRCodeScanCount() > 0 && !PlayerPrefs.HasKey(CardboardUtility.KEY_CARDBOARD_CAMERA_SCANNED))
