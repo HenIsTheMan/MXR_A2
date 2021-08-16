@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9015087396125605244}
+  - component: {fileID: 825035473370311205}
   - component: {fileID: 9015087396125605241}
   - component: {fileID: 9015087396125605246}
   - component: {fileID: 9015087396125605247}
@@ -33,6 +34,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &825035473370311205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015087396125605245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71305303b968db48b19d119b9825d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletProjectileData: {fileID: 11400000, guid: 7d5da6994faf5004e8efcf2384bcae3b,
+    type: 2}
+  myTransform: {fileID: 9015087396125605244}
+  ignoreMe:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!33 &9015087396125605241
 MeshFilter:
   m_ObjectHideFlags: 0

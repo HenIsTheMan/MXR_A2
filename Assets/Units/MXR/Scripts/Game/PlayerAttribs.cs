@@ -1,3 +1,4 @@
+using MXR.General;
 using UnityEngine;
 
 namespace MXR {
@@ -76,6 +77,30 @@ namespace MXR {
             private set;
         }
 
+        [field: SerializeField]
+        internal ObjPool BulletPool {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal int BulletPoolSize {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal GameObject BulletPrefab {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal Transform BulletParentTransform {
+            get;
+            private set;
+        }
+
         #endregion
 
         #region Ctors and Dtor
@@ -96,6 +121,11 @@ namespace MXR {
 
             UpDownErrorMargin = 0.0f;
             TurningErrorMargin = 0.0f;
+
+            BulletPool = null;
+            BulletPoolSize = 0;
+            BulletPrefab = null;
+            BulletParentTransform = null;
         }
 
         static PlayerAttribs() {
@@ -116,6 +146,8 @@ namespace MXR {
         private void Awake() {
             Spd = MinSpd;
             AccelFactor = RegularAccelFactor;
+
+            BulletPool.InitMe(BulletPoolSize, BulletPrefab, BulletParentTransform);
         }
 
         #endregion
