@@ -46,10 +46,10 @@ namespace MXR {
         }
 
         private void FixedUpdate() {
-            Vector3 oldPos = transform.position;
-            transform.position += transform.forward * bulletProjectileData.Spd * Time.fixedDeltaTime;
+            Vector3 oldPos = myTransform.position;
+            myTransform.position += myTransform.forward * bulletProjectileData.Spd * Time.fixedDeltaTime;
 
-            if(Physics.Linecast(oldPos, transform.position, out RaycastHit hitInfo, ~ignoreMe, QueryTriggerInteraction.Ignore)) {
+            if(Physics.Linecast(oldPos, myTransform.position, out RaycastHit hitInfo, ~ignoreMe, QueryTriggerInteraction.Ignore)) {
                 BulletPool.DeactivateObj(gameObject);
 
                 if(hitInfo.transform.CompareTag("Boss")) {

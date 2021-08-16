@@ -2099,9 +2099,9 @@ MonoBehaviour:
   <MyTransform>k__BackingField: {fileID: 1253666293}
   <MinSpd>k__BackingField: 7
   <MaxSpd>k__BackingField: 24
-  <RegularAccelFactor>k__BackingField: 1.4
-  <GoingUpAccelFactor>k__BackingField: -1
-  <GoingDownAccelFactor>k__BackingField: 2
+  <RegularAccelFactor>k__BackingField: 2.4
+  <GoingUpAccelFactor>k__BackingField: -1.7
+  <GoingDownAccelFactor>k__BackingField: 3.4
   <TurningAccelFactor>k__BackingField: -0.7
   <UpDownErrorMargin>k__BackingField: 4
   <TurningErrorMargin>k__BackingField: 4

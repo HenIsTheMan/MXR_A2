@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MXR {
     [CreateAssetMenu(fileName = "ProjectileData", menuName = "ScriptableObjs/ProjectileData", order = 0)]
-    internal sealed class ProjectileData: ScriptableObject {
+    internal sealed class ProjectileData: ScriptableObject { //POD
         #region Fields
 
         internal float Spd {
