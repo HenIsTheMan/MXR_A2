@@ -53,7 +53,7 @@ namespace MXR {
             camTransform.localPosition = Val.Lerp(
                 camTransform.localPosition,
                 playerAttribs.MyTransform.localPosition - playerAttribs.Dir * camHorizontalDist + new Vector3(0.0f, camYOffset, 0.0f),
-                Time.deltaTime * camPosSmoothingFactor
+                Time.deltaTime * camPosSmoothingFactor * playerAttribs.AccelFactor
             );
 
             Quaternion rotation = Quaternion.Lerp(
@@ -65,11 +65,11 @@ namespace MXR {
                 Time.deltaTime * camRotationSmoothingFactor
             );
 
-            rotation = Quaternion.Lerp(
-                rotation,
-                Quaternion.Euler(0.0f, 0.0f, playerAttribs.MyTransform.localEulerAngles.z) * rotation,
-                Time.deltaTime * camRotationSmoothingFactor
-            );
+            //rotation = Quaternion.Lerp(
+            //    rotation,
+            //    Quaternion.Euler(0.0f, 0.0f, playerAttribs.MyTransform.localEulerAngles.z) * rotation,
+            //    Time.deltaTime * camRotationSmoothingFactor
+            //);
 
             camTransform.localRotation = rotation;
         }
