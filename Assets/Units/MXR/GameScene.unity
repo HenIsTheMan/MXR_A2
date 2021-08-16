@@ -384,7 +384,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190820134}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -2185,6 +2185,7 @@ GameObject:
   - component: {fileID: 1253666293}
   - component: {fileID: 1253666295}
   - component: {fileID: 1253666294}
+  - component: {fileID: 1253666297}
   - component: {fileID: 1253666296}
   m_Layer: 0
   m_Name: Player
@@ -2264,6 +2265,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4, y: 0.44, z: 2.77}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1253666297
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253666292}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 2
+  m_AngularDrag: 7
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1253982070
 GameObject:
   m_ObjectHideFlags: 0

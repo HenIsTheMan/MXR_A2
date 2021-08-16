@@ -93,6 +93,12 @@ namespace MXR {
             }
         }
 
+        private void OnTriggerEnter() {
+            General.Console.Log("here");
+        }
+
+        #endregion
+
         private void PlayerRotation() {
             if(shldLimitX) {
                 eulerAngles.x = Mathf.Clamp(
@@ -154,7 +160,5 @@ namespace MXR {
 
             return result;
         }
-
-        #endregion
     }
 }
