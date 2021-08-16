@@ -21,9 +21,6 @@ namespace MXR {
         private float camRotationSmoothingFactor;
 
         [SerializeField]
-        private bool shldSmoothOutCamRotationY;
-
-        [SerializeField]
         private PlayerAttribs playerAttribs;
 
         #endregion
@@ -42,8 +39,6 @@ namespace MXR {
             camPosSmoothingFactor = 0.0f;
             camRotationSmoothingFactor = 0.0f;
 
-            shldSmoothOutCamRotationY = true;
-
             playerAttribs = null;
         }
 
@@ -61,28 +56,14 @@ namespace MXR {
                 Time.deltaTime * camPosSmoothingFactor * playerAttribs.AccelFactor
             );
 
-            Quaternion rotation;
-            if(shldSmoothOutCamRotationY) {
-                rotation = Quaternion.Lerp(
-                    camTransform.localRotation,
-                    Quaternion.FromToRotation(
-                        Vector3.forward,
-                        Vector3.Normalize(playerAttribs.MyTransform.localPosition - camTransform.localPosition)
-                    ),
-                    Time.deltaTime * camRotationSmoothingFactor
-                );
-            } else {
-                Vector3 dir = Vector3.Normalize(playerAttribs.MyTransform.localPosition - camTransform.localPosition);
-
-                rotation = Quaternion.Lerp(
-                    camTransform.localRotation,
-                    Quaternion.FromToRotation(
-                        Vector3.forward,
-                        new Vector3(0.0f, dir.y, 0.0f)
-                    ),
-                    Time.deltaTime * camRotationSmoothingFactor
-                );
-            }
+            Quaternion rotation = Quaternion.Lerp(
+                camTransform.localRotation,
+                Quaternion.FromToRotation(
+                    Vector3.forward,
+                    Vector3.Normalize(playerAttribs.MyTransform.localPosition - camTransform.localPosition)
+                ),
+                Time.deltaTime * camRotationSmoothingFactor
+            );
 
             Vector3 eulerAngles = rotation.eulerAngles;
             rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, 0.0f);
