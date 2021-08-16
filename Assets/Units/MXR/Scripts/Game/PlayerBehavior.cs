@@ -6,6 +6,7 @@ namespace MXR {
         #region Fields
 
         private Vector3 eulerAngles;
+        private Quaternion prevRotation;
 
         [SerializeField]
         private PlayerAttribs playerAttribs;
@@ -46,6 +47,7 @@ namespace MXR {
 
         internal PlayerBehavior(): base() {
             eulerAngles = Vector3.zero;
+            prevRotation = Quaternion.identity;
             playerAttribs = null;
 
             shldLimitX = true;
@@ -85,58 +87,73 @@ namespace MXR {
 
             if(Application.isEditor) {
                 if(Input.GetMouseButton(1)) {
-                    SimulatePlayerRotation();
+                    PlayerRotation();
                 }
-            } else{
+            } else {
+                CardboardHeadTracker.UpdatePose();
                 PlayerRotation();
+                prevRotation = CardboardHeadTracker.trackerUnityRotation;
             }
         }
 
-        private void SimulatePlayerRotation() {
+        private void PlayerRotation() {
             if(shldLimitX) {
                 eulerAngles.x = Mathf.Clamp(
-                    eulerAngles.x - GetMouseY() * targetRotationXMultiplier * Time.deltaTime,
+                    eulerAngles.x - CalcUpDownFactor() * targetRotationXMultiplier * Time.deltaTime,
                     xLocalEulerAngleMinMax.x,
                     xLocalEulerAngleMinMax.y
                 );
             } else {
-                eulerAngles.x -= GetMouseY() * targetRotationXMultiplier * Time.deltaTime;
+                eulerAngles.x -= CalcUpDownFactor() * targetRotationXMultiplier * Time.deltaTime;
             }
 
             if(shldLimitY) {
                 eulerAngles.y = Mathf.Clamp(
-                    eulerAngles.y + GetMouseX() * targetRotationYMultiplier * Time.deltaTime,
+                    eulerAngles.y + CalcTurnFactor() * targetRotationYMultiplier * Time.deltaTime,
                     yLocalEulerAngleMinMax.x,
                     yLocalEulerAngleMinMax.y
                 );
             } else {
-                eulerAngles.y += GetMouseX() * targetRotationYMultiplier * Time.deltaTime;
+                eulerAngles.y += CalcTurnFactor() * targetRotationYMultiplier * Time.deltaTime;
             }
 
             if(shldLimitZ) {
                 eulerAngles.z = Mathf.Clamp(
-                    eulerAngles.z - GetMouseX() * targetRotationZMultiplier * Time.deltaTime,
+                    eulerAngles.z - CalcTurnFactor() * targetRotationZMultiplier * Time.deltaTime,
                     zLocalEulerAngleMinMax.x,
                     zLocalEulerAngleMinMax.y
                 );
             } else {
-                eulerAngles.z -= GetMouseX() * targetRotationZMultiplier * Time.deltaTime;
+                eulerAngles.z -= CalcTurnFactor() * targetRotationZMultiplier * Time.deltaTime;
             }
 
             transform.localEulerAngles = eulerAngles;
         }
 
-        private float GetMouseX() {
-            return Input.GetAxis("Mouse X");
+        private float CalcUpDownFactor() {
+            if(Application.isEditor) {
+                return Input.GetAxis("Mouse Y");
+            }
+
+            return (Angle0To360(CardboardHeadTracker.trackerUnityRotation.eulerAngles.x) - Angle0To360(prevRotation.eulerAngles.x)) / 180.0f - 1.0f;
         }
 
-        private float GetMouseY() {
-            return Input.GetAxis("Mouse Y");
+        private float CalcTurnFactor() {
+            if(Application.isEditor) {
+                return Input.GetAxis("Mouse X");
+            }
+            
+            return (Angle0To360(CardboardHeadTracker.trackerUnityRotation.eulerAngles.z) - Angle0To360(prevRotation.eulerAngles.z)) / 180.0f - 1.0f;
         }
 
-        private void PlayerRotation() {
-            CardboardHeadTracker.UpdatePose();
-            transform.localRotation = CardboardHeadTracker.trackerUnityRotation;
+        private float Angle0To360(float angle) {
+            float result = angle - Mathf.CeilToInt(angle / 360.0f) * 360.0f;
+
+            if(result < 0.0f) {
+                result += 360.0f;
+            }
+
+            return result;
         }
 
         #endregion
