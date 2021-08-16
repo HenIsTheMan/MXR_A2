@@ -5,8 +5,7 @@ namespace MXR {
     internal sealed class PlayerBehavior: MonoBehaviour {
         #region Fields
 
-        private Vector3 simulatedEulerAngles;
-        private Quaternion actualRotation;
+        private Vector3 eulerAngles;
 
         [SerializeField]
         private PlayerAttribs playerAttribs;
@@ -46,8 +45,7 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal PlayerBehavior(): base() {
-            simulatedEulerAngles = Vector3.zero;
-            actualRotation = Quaternion.identity;
+            eulerAngles = Vector3.zero;
             playerAttribs = null;
 
             shldLimitX = true;
@@ -71,17 +69,11 @@ namespace MXR {
         #region Unity User Callback Event Funcs
 
         private void Awake() {
-            simulatedEulerAngles = transform.localEulerAngles;
+            eulerAngles = transform.localEulerAngles;
         }
 
         private void Update() {
             playerAttribs.Dir = Vector3.Normalize(transform.rotation * Vector3.forward);
-
-            if(Application.isEditor) {
-                CalcSimulatedPlayerRotation();
-            } else {
-                CalcActualPlayerRotation();
-            }
 
             playerAttribs.Spd += playerAttribs.AccelFactor * Time.deltaTime;
             playerAttribs.Spd = Mathf.Clamp(playerAttribs.Spd, playerAttribs.MinSpd, playerAttribs.MaxSpd);
@@ -93,47 +85,45 @@ namespace MXR {
 
             if(Application.isEditor) {
                 if(Input.GetMouseButton(1)) {
-                    ApplySimulatedPlayerRotation();
+                    SimulatePlayerRotation();
                 }
             } else{
-                ApplyActualPlayerRotation();
+                PlayerRotation();
             }
         }
 
-        private void CalcSimulatedPlayerRotation() {
+        private void SimulatePlayerRotation() {
             if(shldLimitX) {
-                simulatedEulerAngles.x = Mathf.Clamp(
-                    simulatedEulerAngles.x - GetMouseY() * targetRotationXMultiplier * Time.deltaTime,
+                eulerAngles.x = Mathf.Clamp(
+                    eulerAngles.x - GetMouseY() * targetRotationXMultiplier * Time.deltaTime,
                     xLocalEulerAngleMinMax.x,
                     xLocalEulerAngleMinMax.y
                 );
             } else {
-                simulatedEulerAngles.x -= GetMouseY() * targetRotationXMultiplier * Time.deltaTime;
+                eulerAngles.x -= GetMouseY() * targetRotationXMultiplier * Time.deltaTime;
             }
 
             if(shldLimitY) {
-                simulatedEulerAngles.y = Mathf.Clamp(
-                    simulatedEulerAngles.y + GetMouseX() * targetRotationYMultiplier * Time.deltaTime,
+                eulerAngles.y = Mathf.Clamp(
+                    eulerAngles.y + GetMouseX() * targetRotationYMultiplier * Time.deltaTime,
                     yLocalEulerAngleMinMax.x,
                     yLocalEulerAngleMinMax.y
                 );
             } else {
-                simulatedEulerAngles.y += GetMouseX() * targetRotationYMultiplier * Time.deltaTime;
+                eulerAngles.y += GetMouseX() * targetRotationYMultiplier * Time.deltaTime;
             }
 
             if(shldLimitZ) {
-                simulatedEulerAngles.z = Mathf.Clamp(
-                    simulatedEulerAngles.z - GetMouseX() * targetRotationZMultiplier * Time.deltaTime,
+                eulerAngles.z = Mathf.Clamp(
+                    eulerAngles.z - GetMouseX() * targetRotationZMultiplier * Time.deltaTime,
                     zLocalEulerAngleMinMax.x,
                     zLocalEulerAngleMinMax.y
                 );
             } else {
-                simulatedEulerAngles.z -= GetMouseX() * targetRotationZMultiplier * Time.deltaTime;
+                eulerAngles.z -= GetMouseX() * targetRotationZMultiplier * Time.deltaTime;
             }
-        }
 
-        private void CalcActualPlayerRotation() {
-            actualRotation = CardboardHeadTracker.trackerUnityRotation;
+            transform.localEulerAngles = eulerAngles;
         }
 
         private float GetMouseX() {
@@ -144,13 +134,9 @@ namespace MXR {
             return Input.GetAxis("Mouse Y");
         }
 
-        private void ApplySimulatedPlayerRotation() {
-            transform.localEulerAngles = simulatedEulerAngles;
-        }
-
-        private void ApplyActualPlayerRotation() {
+        private void PlayerRotation() {
             CardboardHeadTracker.UpdatePose();
-            transform.localRotation = actualRotation;
+            transform.localRotation = CardboardHeadTracker.trackerUnityRotation;
         }
 
         #endregion
