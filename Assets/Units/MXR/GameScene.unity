@@ -1901,6 +1901,7 @@ MonoBehaviour:
   camYOffset: 1
   camPosSmoothingFactor: 4
   camRotationSmoothingFactor: 4
+  shldSmoothOutCamRotationY: 0
   playerAttribs: {fileID: 1253666295}
 --- !u!114 &1276837807
 MonoBehaviour:
