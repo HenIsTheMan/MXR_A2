@@ -1683,6 +1683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttribs: {fileID: 1253666295}
+  shldLimitX: 1
+  shldLimitY: 0
+  shldLimitZ: 1
   xLocalEulerAngleMinMax: {x: -70, y: 70}
   yLocalEulerAngleMinMax: {x: -180, y: 180}
   zLocalEulerAngleMinMax: {x: -24, y: 24}

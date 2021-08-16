@@ -11,6 +11,15 @@ namespace MXR {
         private PlayerAttribs playerAttribs;
 
         [SerializeField]
+        private bool shldLimitX;
+
+        [SerializeField]
+        private bool shldLimitY;
+
+        [SerializeField]
+        private bool shldLimitZ;
+
+        [SerializeField]
         private Vector2 xLocalEulerAngleMinMax;
 
         [SerializeField]
@@ -38,6 +47,10 @@ namespace MXR {
         internal PlayerBehavior(): base() {
             eulerAngles = Vector3.zero;
             playerAttribs = null;
+
+            shldLimitX = true;
+            shldLimitY = true;
+            shldLimitZ = true;
 
             xLocalEulerAngleMinMax = Vector2.zero;
             yLocalEulerAngleMinMax = Vector2.zero;
@@ -80,23 +93,35 @@ namespace MXR {
         }
 
         private void SimulatePlayerRotation() {
-            eulerAngles.x = Mathf.Clamp(
-                eulerAngles.x - GetMouseY() * targetRotationXMultiplier * Time.deltaTime,
-                xLocalEulerAngleMinMax.x,
-                xLocalEulerAngleMinMax.y
-            );
+            if(shldLimitX) {
+                eulerAngles.x = Mathf.Clamp(
+                    eulerAngles.x - GetMouseY() * targetRotationXMultiplier * Time.deltaTime,
+                    xLocalEulerAngleMinMax.x,
+                    xLocalEulerAngleMinMax.y
+                );
+            } else {
+                eulerAngles.x -= GetMouseY() * targetRotationXMultiplier * Time.deltaTime;
+            }
 
-            eulerAngles.y = Mathf.Clamp(
-                eulerAngles.y + GetMouseX() * targetRotationYMultiplier * Time.deltaTime,
-                yLocalEulerAngleMinMax.x,
-                yLocalEulerAngleMinMax.y
-            );
+            if(shldLimitY) {
+                eulerAngles.y = Mathf.Clamp(
+                    eulerAngles.y + GetMouseX() * targetRotationYMultiplier * Time.deltaTime,
+                    yLocalEulerAngleMinMax.x,
+                    yLocalEulerAngleMinMax.y
+                );
+            } else {
+                eulerAngles.y += GetMouseX() * targetRotationYMultiplier * Time.deltaTime;
+            }
 
-            eulerAngles.z = Mathf.Clamp(
-                eulerAngles.z - GetMouseX() * targetRotationZMultiplier * Time.deltaTime,
-                zLocalEulerAngleMinMax.x,
-                zLocalEulerAngleMinMax.y
-            );
+            if(shldLimitZ) {
+                eulerAngles.z = Mathf.Clamp(
+                    eulerAngles.z - GetMouseX() * targetRotationZMultiplier * Time.deltaTime,
+                    zLocalEulerAngleMinMax.x,
+                    zLocalEulerAngleMinMax.y
+                );
+            } else {
+                eulerAngles.z -= GetMouseX() * targetRotationZMultiplier * Time.deltaTime;
+            }
 
             transform.localEulerAngles = eulerAngles;
         }
@@ -111,7 +136,6 @@ namespace MXR {
 
         private void PlayerRotation() {
             CardboardHeadTracker.UpdatePose();
-            //transform.localPosition = CardboardHeadTracker.trackerUnityPosition;
             transform.localRotation = CardboardHeadTracker.trackerUnityRotation;
         }
 
