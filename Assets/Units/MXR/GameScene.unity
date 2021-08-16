@@ -1707,7 +1707,12 @@ MonoBehaviour:
   <MyTransform>k__BackingField: {fileID: 1253666293}
   <MinSpd>k__BackingField: 7
   <MaxSpd>k__BackingField: 24
-  <AccelFactor>k__BackingField: 4
+  <RegularAccelFactor>k__BackingField: 1.4
+  <GoingUpAccelFactor>k__BackingField: -1
+  <GoingDownAccelFactor>k__BackingField: 2
+  <TurningAccelFactor>k__BackingField: -0.7
+  <UpDownErrorMargin>k__BackingField: 4
+  <TurningErrorMargin>k__BackingField: 4
 --- !u!1 &1253982070
 GameObject:
   m_ObjectHideFlags: 0

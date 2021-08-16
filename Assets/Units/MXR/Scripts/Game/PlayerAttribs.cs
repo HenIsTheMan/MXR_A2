@@ -35,8 +35,43 @@ namespace MXR {
             private set;
         }
 
-        [field: SerializeField]
         internal float AccelFactor {
+            get;
+            set;
+        }
+
+        [field: SerializeField]
+        internal float RegularAccelFactor {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal float GoingUpAccelFactor {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal float GoingDownAccelFactor {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal float TurningAccelFactor {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal float UpDownErrorMargin {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal float TurningErrorMargin {
             get;
             private set;
         }
@@ -52,7 +87,15 @@ namespace MXR {
             Spd = 0.0f;
             MinSpd = 0.0f;
             MaxSpd = 0.0f;
+
             AccelFactor = 0.0f;
+            RegularAccelFactor = 0.0f;
+            GoingUpAccelFactor = 0.0f;
+            GoingDownAccelFactor = 0.0f;
+            TurningAccelFactor = 0.0f;
+
+            UpDownErrorMargin = 0.0f;
+            TurningErrorMargin = 0.0f;
         }
 
         static PlayerAttribs() {
@@ -65,6 +108,9 @@ namespace MXR {
         private void OnValidate() {
             MinSpd = Mathf.Max(0.0f, MinSpd);
             MaxSpd = Mathf.Max(0.0f, MaxSpd);
+
+            UpDownErrorMargin = Mathf.Abs(UpDownErrorMargin);
+            TurningErrorMargin = Mathf.Abs(TurningErrorMargin);
         }
 
         private void Awake() {
