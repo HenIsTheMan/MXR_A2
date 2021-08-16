@@ -115,6 +115,7 @@ namespace MXR {
 
         private void Awake() {
             Spd = MinSpd;
+            AccelFactor = RegularAccelFactor;
         }
 
         #endregion

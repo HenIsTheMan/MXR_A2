@@ -1899,7 +1899,7 @@ MonoBehaviour:
   camTransform: {fileID: 1276837804}
   camHorizontalDist: 4
   camYOffset: 1
-  camPosSmoothingFactor: 2
+  camPosSmoothingFactor: 4
   camRotationSmoothingFactor: 4
   playerAttribs: {fileID: 1253666295}
 --- !u!114 &1276837807
