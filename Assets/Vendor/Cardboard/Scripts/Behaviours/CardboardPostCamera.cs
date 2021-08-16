@@ -23,14 +23,14 @@ namespace MobfishCardboard
             srpInUse = GraphicsSettings.renderPipelineAsset != null;
         }
 
-        private void Start()
-        {
-            if (srpInUse)
-            {
-                Debug.Log("CardboardPostCamera, current RenderPipeline = " +
-                    GraphicsSettings.renderPipelineAsset?.GetType().ToString());
-            }
-        }
+        //private void Start()
+        //{
+        //    if (srpInUse)
+        //    {
+        //        Debug.Log("CardboardPostCamera, current RenderPipeline = " +
+        //            GraphicsSettings.renderPipelineAsset?.GetType().ToString());
+        //    }
+        //}
 
         private void OnEnable()
         {
