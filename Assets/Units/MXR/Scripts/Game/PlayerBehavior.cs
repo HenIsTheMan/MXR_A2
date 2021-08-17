@@ -72,6 +72,25 @@ namespace MXR {
             eulerAngles = transform.localEulerAngles;
         }
 
+        private void FixedUpdate() {
+            playerAttribs.Spd += playerAttribs.AccelFactor * Time.fixedDeltaTime;
+            playerAttribs.Spd = Mathf.Clamp(playerAttribs.Spd, playerAttribs.MinSpd, playerAttribs.MaxSpd);
+
+            transform.localPosition
+                += playerAttribs.Dir
+                * playerAttribs.Spd
+                * Time.fixedDeltaTime;
+
+            if(Application.isEditor) {
+                if(Input.GetMouseButton(1)) {
+                    PlayerRotation();
+                }
+            } else {
+                CardboardHeadTracker.UpdatePose();
+                PlayerRotation();
+            }
+        }
+
         private void Update() {
             playerAttribs.Dir = Vector3.Normalize(transform.rotation * Vector3.forward);
 
@@ -82,23 +101,6 @@ namespace MXR {
                 bulletProjectileBehavior.myTransform.position = transform.position;
                 bulletProjectileBehavior.BulletPool = playerAttribs.BulletPool;
                 bulletProjectileBehavior.Dir = playerAttribs.Dir;
-            }
-
-            playerAttribs.Spd += playerAttribs.AccelFactor * Time.deltaTime;
-            playerAttribs.Spd = Mathf.Clamp(playerAttribs.Spd, playerAttribs.MinSpd, playerAttribs.MaxSpd);
-
-            transform.localPosition
-                += playerAttribs.Dir
-                * playerAttribs.Spd
-                * Time.deltaTime;
-
-            if(Application.isEditor) {
-                if(Input.GetMouseButton(1)) {
-                    PlayerRotation();
-                }
-            } else {
-                CardboardHeadTracker.UpdatePose();
-                PlayerRotation();
             }
         }
 
@@ -111,32 +113,32 @@ namespace MXR {
         private void PlayerRotation() {
             if(shldLimitX) {
                 eulerAngles.x = Mathf.Clamp(
-                    eulerAngles.x - CalcUpDownFactor() * targetRotationXMultiplier * Time.deltaTime,
+                    eulerAngles.x - CalcUpDownFactor() * targetRotationXMultiplier * Time.fixedDeltaTime,
                     xLocalEulerAngleMinMax.x,
                     xLocalEulerAngleMinMax.y
                 );
             } else {
-                eulerAngles.x -= CalcUpDownFactor() * targetRotationXMultiplier * Time.deltaTime;
+                eulerAngles.x -= CalcUpDownFactor() * targetRotationXMultiplier * Time.fixedDeltaTime;
             }
 
             if(shldLimitY) {
                 eulerAngles.y = Mathf.Clamp(
-                    eulerAngles.y + CalcTurnFactor() * targetRotationYMultiplier * Time.deltaTime,
+                    eulerAngles.y + CalcTurnFactor() * targetRotationYMultiplier * Time.fixedDeltaTime,
                     yLocalEulerAngleMinMax.x,
                     yLocalEulerAngleMinMax.y
                 );
             } else {
-                eulerAngles.y += CalcTurnFactor() * targetRotationYMultiplier * Time.deltaTime;
+                eulerAngles.y += CalcTurnFactor() * targetRotationYMultiplier * Time.fixedDeltaTime;
             }
 
             if(shldLimitZ) {
                 eulerAngles.z = Mathf.Clamp(
-                    eulerAngles.z - CalcTurnFactor() * targetRotationZMultiplier * Time.deltaTime,
+                    eulerAngles.z - CalcTurnFactor() * targetRotationZMultiplier * Time.fixedDeltaTime,
                     zLocalEulerAngleMinMax.x,
                     zLocalEulerAngleMinMax.y
                 );
             } else {
-                eulerAngles.z -= CalcTurnFactor() * targetRotationZMultiplier * Time.deltaTime;
+                eulerAngles.z -= CalcTurnFactor() * targetRotationZMultiplier * Time.fixedDeltaTime;
             }
 
             transform.localEulerAngles = eulerAngles;

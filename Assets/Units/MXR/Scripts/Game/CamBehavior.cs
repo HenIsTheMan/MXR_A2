@@ -49,11 +49,11 @@ namespace MXR {
 
         #region Unity User Callback Event Funcs
 
-        private void LateUpdate() {
+        private void FixedUpdate() {
             camTransform.localPosition = Val.Lerp(
                 camTransform.localPosition,
                 playerAttribs.MyTransform.localPosition - playerAttribs.Dir * camHorizontalDist + new Vector3(0.0f, camYOffset, 0.0f),
-                Time.deltaTime * (camPosSmoothingFactor + playerAttribs.AccelFactor)
+                Time.fixedDeltaTime * (camPosSmoothingFactor + playerAttribs.AccelFactor)
             );
 
             Quaternion rotation = Quaternion.Lerp(
@@ -62,7 +62,7 @@ namespace MXR {
                     Vector3.forward,
                     Vector3.Normalize(playerAttribs.MyTransform.localPosition - camTransform.localPosition)
                 ),
-                Time.deltaTime * camRotationSmoothingFactor
+                Time.fixedDeltaTime * camRotationSmoothingFactor
             );
 
             Vector3 eulerAngles = rotation.eulerAngles;
