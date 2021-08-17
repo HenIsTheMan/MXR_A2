@@ -29,7 +29,7 @@ namespace MXR {
         private bool overlayIsOpen;
 
         private void Awake() {
-            Application.targetFrameRate = CardboardUtility.GetTargetFramerate();
+            Application.targetFrameRate = 60;
 
             if(dontDestroyAndSingleton) {
                 if(instance == null) {

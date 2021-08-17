@@ -193,22 +193,12 @@ namespace MobfishCardboard
 
         public static Vector2Int GetAdjustedScreenResolution()
         {
-            if (Screen.width >= Screen.height)
-            {
-                return new Vector2Int(Screen.width, Screen.height);
-            }
-            else
-            {
-                return new Vector2Int(Screen.height, Screen.width);
-            }
+            return new Vector2Int(1440, 810);
         }
 
         public static int GetTargetFramerate()
         {
-            if (Screen.currentResolution.refreshRate < 60)
-                return 60;
-            else
-                return Screen.currentResolution.refreshRate;
+            return 60;
         }
     }
 }
