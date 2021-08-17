@@ -37,6 +37,11 @@ namespace MXR {
         [SerializeField]
         private float targetRotationZMultiplier;
 
+        private float mouseDownTime;
+
+        [SerializeField]
+        private float mouseDownTimeThreshold;
+
         #endregion
 
         #region Properties
@@ -59,6 +64,9 @@ namespace MXR {
             targetRotationXMultiplier = 0.0f;
             targetRotationYMultiplier = 0.0f;
             targetRotationZMultiplier = 0.0f;
+
+            mouseDownTime = 0.0f;
+            mouseDownTimeThreshold = 0.0f;
         }
 
         static PlayerBehavior() {
@@ -94,14 +102,21 @@ namespace MXR {
         private void Update() {
             playerAttribs.Dir = transform.rotation * Vector3.forward;
 
-            if(Input.GetMouseButtonDown(0)) { //Shoot
-                BulletProjectileBehavior bulletProjectileBehavior
-                    = playerAttribs.BulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
+            if(Input.GetMouseButtonDown(0)) {
+                mouseDownTime += Time.deltaTime;
+            }
 
-                bulletProjectileBehavior.myTransform.position = transform.position;
-                bulletProjectileBehavior.BulletPool = playerAttribs.BulletPool;
-                bulletProjectileBehavior.Dir = playerAttribs.Dir;
-                bulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
+            if(Input.GetMouseButtonUp(0)) {
+                if(mouseDownTime <= mouseDownTimeThreshold) { //Shoot normal bullet
+                    BulletProjectileBehavior bulletProjectileBehavior
+                        = playerAttribs.BulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
+
+                    bulletProjectileBehavior.myTransform.position = transform.position;
+                    bulletProjectileBehavior.BulletPool = playerAttribs.BulletPool;
+                    bulletProjectileBehavior.Dir = playerAttribs.Dir;
+                    bulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
+                } else {
+                }
             }
         }
 
