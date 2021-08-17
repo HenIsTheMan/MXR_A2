@@ -61,6 +61,9 @@ namespace MXR {
         [SerializeField]
         private ExtraSegment[] extraSegments;
 
+        [SerializeField]
+        private Component[] scriptsToAdd;
+
         #endregion
 
         #region Properties
@@ -91,6 +94,7 @@ namespace MXR {
             displacementBetweenBodySegments = Vector3.zero;
 
             extraSegments = System.Array.Empty<ExtraSegment>();
+            scriptsToAdd = System.Array.Empty<Component>();
         }
 
         static WormBuilder() {
@@ -175,7 +179,11 @@ namespace MXR {
                 wormPartTransform.tag = myTag;
                 wormPartTransform.localPosition = displacementBetweenBodySegments;
 
-                boneRenderer.transforms[i + 1] = wormPartTransform;
+				foreach(Component script in scriptsToAdd) {
+                    CopyAndAddComponent(script, wormPartTransform.gameObject);
+				}
+
+				boneRenderer.transforms[i + 1] = wormPartTransform;
 
                 dampedTransformComponent.data.constrainedObject = wormPartTransform;
             }
@@ -185,9 +193,35 @@ namespace MXR {
                 wormPartTransform = Instantiate(extraSegments[i].prefab, wormPartTransform).transform;
                 wormPartTransform.tag = myTag;
                 wormPartTransform.localPosition = extraSegments[i].displacement;
+
+                foreach(Component script in scriptsToAdd) {
+                    CopyAndAddComponent(script, wormPartTransform.gameObject);
+                }
             }
 
             #endif
+        }
+
+        private void CopyAndAddComponent<T, Type>(T original, Type destination)
+            where T: Component
+            where Type: Object
+        {
+            System.Type type = original.GetType();
+            var dst = (destination as GameObject).GetComponent(type) as T;
+            if(!dst)
+                dst = (destination as GameObject).AddComponent(type) as T;
+            var fields = type.GetFields();
+            foreach(var field in fields) {
+                if(field.IsStatic)
+                    continue;
+                field.SetValue(dst, field.GetValue(original));
+            }
+            var props = type.GetProperties();
+            foreach(var prop in props) {
+                if(!prop.CanWrite || !prop.CanWrite || prop.Name == "name")
+                    continue;
+                prop.SetValue(dst, prop.GetValue(original, null), null);
+            }
         }
     }
 }
