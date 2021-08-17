@@ -108,7 +108,7 @@ namespace MobfishCardboard
         {
             Vector2Int resolution = CardboardUtility.GetAdjustedScreenResolution();
             _lensDistortion = CardboardLensDistortion_create(
-                encoded_device_params, params_size, 1920, 1080);
+                encoded_device_params, params_size, resolution.x, resolution.y);
         }
 
         public static void DestroyLensDistortion()
