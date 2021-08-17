@@ -101,6 +101,7 @@ namespace MXR {
                 bulletProjectileBehavior.myTransform.position = transform.position;
                 bulletProjectileBehavior.BulletPool = playerAttribs.BulletPool;
                 bulletProjectileBehavior.Dir = playerAttribs.Dir;
+                bulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
             }
         }
 

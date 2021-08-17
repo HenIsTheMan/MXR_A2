@@ -28,6 +28,11 @@ namespace MXR {
             set;
         }
 
+        internal float PlayerSpd {
+            private get;
+            set;
+        }
+
         #endregion
 
         #region Ctors and Dtor
@@ -56,7 +61,7 @@ namespace MXR {
             bulletProjectileData.Spd += bulletProjectileData.AccelFactor * Time.fixedDeltaTime;
             bulletProjectileData.Spd = Mathf.Clamp(bulletProjectileData.Spd, bulletProjectileData.MinSpd, bulletProjectileData.MaxSpd);
 
-            myTransform.position += Dir * bulletProjectileData.Spd * Time.fixedDeltaTime;
+            myTransform.position += Dir * (bulletProjectileData.Spd + PlayerSpd) * Time.fixedDeltaTime;
 
 			if(Physics.Linecast(oldPos, myTransform.position, out RaycastHit hitInfo, ~ignoreMe, QueryTriggerInteraction.Ignore)) {
 				BulletPool.DeactivateObj(gameObject);

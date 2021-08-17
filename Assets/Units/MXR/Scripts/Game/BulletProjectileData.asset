@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e4cba707d53a541b00b23a9056fee0, type: 3}
   m_Name: BulletProjectileData
   m_EditorClassIdentifier: 
-  <MinSpd>k__BackingField: 40
-  <MaxSpd>k__BackingField: 100
-  <AccelFactor>k__BackingField: 7
+  <MinSpd>k__BackingField: 10
+  <MaxSpd>k__BackingField: 40
+  <AccelFactor>k__BackingField: 10
   <Lifetime>k__BackingField: 4

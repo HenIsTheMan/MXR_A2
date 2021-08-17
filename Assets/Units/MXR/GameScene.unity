@@ -2066,7 +2066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MyTransform>k__BackingField: {fileID: 1253666293}
   <MinSpd>k__BackingField: 40
-  <MaxSpd>k__BackingField: 100
+  <MaxSpd>k__BackingField: 70
   <RegularAccelFactor>k__BackingField: 4
   <GoingUpAccelFactor>k__BackingField: -3.2
   <GoingDownAccelFactor>k__BackingField: 5.8
@@ -2292,7 +2292,7 @@ MonoBehaviour:
   camTransform: {fileID: 1276837804}
   camHorizontalDist: 4
   camYOffset: 1
-  camPosSmoothingFactor: 4
+  camPosSmoothingFactor: 7
   camRotationSmoothingFactor: 4
   playerAttribs: {fileID: 1253666295}
 --- !u!114 &1276837807
