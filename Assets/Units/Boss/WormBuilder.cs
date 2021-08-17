@@ -26,6 +26,9 @@ namespace MXR {
         private bool shldBuildInPlayMode;
 
         [SerializeField]
+        private string myTag;
+
+        [SerializeField]
         private Transform rigTransform;
 
         [SerializeField]
@@ -70,6 +73,8 @@ namespace MXR {
             shldBuildInEditMode = false;
             shldBuildInPlayMode = false;
 
+            myTag = string.Empty;
+
             rigTransform = null;
             headTransform = null;
 
@@ -94,6 +99,12 @@ namespace MXR {
         #endregion
 
         #region Unity User Callback Event Funcs
+
+        private void OnValidate() {
+            if(string.IsNullOrEmpty(myTag)) {
+                myTag = "Untagged";
+            }
+        }
 
         private void Awake() {
             #if UNITY_EDITOR
@@ -149,6 +160,7 @@ namespace MXR {
             boneRenderer.transforms[0] = headTransform;
 
             Transform wormPartTransform = headTransform;
+            wormPartTransform.tag = myTag;
             DampedTransform dampedTransformComponent;
 
             for(int i = 0; i < amtOfBodySegments; ++i) {
@@ -160,6 +172,7 @@ namespace MXR {
                 dampedTransformComponent.data.dampRotation = dampRotation;
 
                 wormPartTransform = Instantiate(bodySegmentPrefab, wormPartTransform).transform;
+                wormPartTransform.tag = myTag;
                 wormPartTransform.localPosition = displacementBetweenBodySegments;
 
                 boneRenderer.transforms[i + 1] = wormPartTransform;
@@ -170,6 +183,7 @@ namespace MXR {
             int len = extraSegments.Length;
             for(int i = 0; i < len; ++i) {
                 wormPartTransform = Instantiate(extraSegments[i].prefab, wormPartTransform).transform;
+                wormPartTransform.tag = myTag;
                 wormPartTransform.localPosition = extraSegments[i].displacement;
             }
 
