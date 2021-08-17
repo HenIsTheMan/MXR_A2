@@ -60,7 +60,7 @@ namespace MXR {
                 camTransform.localRotation,
                 Quaternion.FromToRotation(
                     Vector3.forward,
-                    Vector3.Normalize(playerAttribs.MyTransform.localPosition - camTransform.localPosition)
+                    (playerAttribs.MyTransform.localPosition - camTransform.localPosition).normalized
                 ),
                 Time.fixedDeltaTime * camRotationSmoothingFactor
             );

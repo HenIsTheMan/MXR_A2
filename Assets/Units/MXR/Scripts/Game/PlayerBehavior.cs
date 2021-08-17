@@ -92,7 +92,7 @@ namespace MXR {
         }
 
         private void Update() {
-            playerAttribs.Dir = Vector3.Normalize(transform.rotation * Vector3.forward);
+            playerAttribs.Dir = transform.rotation * Vector3.forward;
 
             if(Input.GetMouseButtonDown(0)) { //Shoot
                 BulletProjectileBehavior bulletProjectileBehavior
