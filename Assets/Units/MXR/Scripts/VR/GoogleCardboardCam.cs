@@ -29,8 +29,7 @@ namespace MXR {
         private bool overlayIsOpen;
 
         private void Awake() {
-            //Application.targetFrameRate = CardboardUtility.GetTargetFramerate();
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = CardboardUtility.GetTargetFramerate();
 
             if(dontDestroyAndSingleton) {
                 if(instance == null) {
@@ -42,19 +41,9 @@ namespace MXR {
                 }
             }
 
-            int savedScreenWidth = Screen.width;
-            int savedScreenHeight = Screen.height;
-
-            Screen.SetResolution((int)(savedScreenWidth * 0.75f), (int)(savedScreenHeight * 0.75f), FullScreenMode.Windowed);
-
             SetupRenderTexture();
 
-            Screen.SetResolution(savedScreenWidth, savedScreenHeight, FullScreenMode.Windowed);
-
             CardboardManager.InitCardboard();
-
-            Screen.SetResolution((int)(savedScreenWidth * 0.75f), (int)(savedScreenHeight * 0.75f), FullScreenMode.Windowed);
-
             CardboardManager.SetVRViewEnable(defaultEnableVRView);
         }
 
