@@ -117,6 +117,8 @@ namespace MXR {
                     bulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
                 } else {
                 }
+
+                mouseDownTime = 0.0f;
             }
         }
 
