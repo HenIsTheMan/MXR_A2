@@ -5,6 +5,12 @@ namespace MXR {
     internal sealed class Crosshair: MonoBehaviour {
         #region Fields
 
+        private Material mtl;
+
+        [SerializeField]
+        private Renderer myRenderer;
+
+        private bool flag;
         private bool canAnimate;
         private bool shldAnimate;
 
@@ -28,6 +34,10 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal Crosshair(): base() {
+            mtl = null;
+            myRenderer = null;
+
+            flag = true;
             canAnimate = false;
             shldAnimate = false;
 
@@ -44,18 +54,28 @@ namespace MXR {
 
         #region Unity User Callback Event Funcs
 
+        private void Awake() {
+            mtl = myRenderer.material;
+        }
+
         private void Update() {
             if(Physics.Raycast(transform.position, transform.rotation * -transform.forward, out RaycastHit hit, maxDist)) {
                 if(hit.transform.tag == targetTag) {
                     canAnimate = true;
                     shldAnimate = false;
 
-                    foreach(AbstractAnim anim in onNotHitAnims) {
-                        anim.IsUpdating = false;
-                    }
+                    if(flag) {
+                        mtl.color = Color.red; //Lame
 
-                    foreach(AbstractAnim anim in onHitAnims) {
-                        anim.IsUpdating = true;
+                        foreach(AbstractAnim anim in onNotHitAnims) {
+                            anim.IsUpdating = false;
+                        }
+
+                        foreach(AbstractAnim anim in onHitAnims) {
+                            anim.IsUpdating = true;
+                        }
+
+                        flag = false;
                     }
                 } else {
                     shldAnimate = true;
@@ -65,15 +85,20 @@ namespace MXR {
             }
 
             if(canAnimate && shldAnimate) {
-                foreach(AbstractAnim anim in onHitAnims) {
-                    anim.IsUpdating = false;
-                }
+                if(!flag) {
+                    mtl.color = Color.white; //Lame
 
-                foreach(AbstractAnim anim in onNotHitAnims) {
-                    anim.IsUpdating = true;
-                }
+                    foreach(AbstractAnim anim in onHitAnims) {
+                        anim.IsUpdating = false;
+                    }
 
-                canAnimate = false;
+                    foreach(AbstractAnim anim in onNotHitAnims) {
+                        anim.IsUpdating = true;
+                    }
+
+                    canAnimate = false;
+                    flag = true;
+                }
             }
         }
 
