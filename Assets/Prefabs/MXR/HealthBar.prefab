@@ -95,10 +95,10 @@ MonoBehaviour:
   isUpdating: 0
   shldInitVals: 0
   periodicDelay: 0
-  startTimeOffset: 0.4
-  animDuration: 1.4
+  startTimeOffset: 0
+  animDuration: 0.1
   countThreshold: 1
-  easingType: 26
+  easingType: 15
   img: {fileID: 3514195102732171630}
   startFillAmt: 1
   endFillAmt: 0
