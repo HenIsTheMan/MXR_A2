@@ -518,7 +518,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8072680527177495348, guid: 895246035ee52bd4587427ede77967b7, type: 3}
 --- !u!1 &193293470
@@ -3161,6 +3161,9 @@ GameObject:
   - component: {fileID: 1693946113}
   - component: {fileID: 1693946116}
   - component: {fileID: 1693946115}
+  - component: {fileID: 1693946114}
+  - component: {fileID: 1693946117}
+  - component: {fileID: 1693946118}
   m_Layer: 0
   m_Name: Crosshair
   m_TagString: Untagged
@@ -3182,6 +3185,24 @@ Transform:
   m_Father: {fileID: 1253666293}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1693946114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693946112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bacb372835b54324f8b35ebcbc8353bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDist: 99999
+  targetTag: Boss
+  onHitAnims:
+  - {fileID: 1693946117}
+  onNotHitAnims:
+  - {fileID: 1693946118}
 --- !u!23 &1693946115
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3231,6 +3252,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693946112}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1693946117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693946112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88349d092a7da0f499f0e367a72b090c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initControl: {fileID: 0}
+  shldSelfInit: 1
+  shldUseUnscaled: 0
+  accessType: 0
+  isUpdating: 0
+  shldInitVals: 0
+  periodicDelay: 0
+  startTimeOffset: 0
+  animDuration: 1.4
+  countThreshold: 1
+  easingType: 19
+  shldAnimateX: 1
+  shldAnimateY: 0
+  shldAnimateZ: 1
+  startScale: {x: 0.04, y: 1, z: 0.04}
+  endScale: {x: 0.034, y: 1, z: 0.034}
+  myTransform: {fileID: 1693946113}
+--- !u!114 &1693946118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693946112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88349d092a7da0f499f0e367a72b090c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initControl: {fileID: 0}
+  shldSelfInit: 1
+  shldUseUnscaled: 0
+  accessType: 0
+  isUpdating: 0
+  shldInitVals: 0
+  periodicDelay: 0
+  startTimeOffset: 0
+  animDuration: 1.4
+  countThreshold: 1
+  easingType: 19
+  shldAnimateX: 1
+  shldAnimateY: 0
+  shldAnimateZ: 1
+  startScale: {x: 0.034, y: 1, z: 0.034}
+  endScale: {x: 0.04, y: 1, z: 0.04}
+  myTransform: {fileID: 1693946113}
 --- !u!1 &1741413637
 GameObject:
   m_ObjectHideFlags: 0
