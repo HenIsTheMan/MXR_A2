@@ -436,6 +436,7 @@ GameObject:
   - component: {fileID: 190820137}
   - component: {fileID: 190820136}
   - component: {fileID: 190820138}
+  - component: {fileID: 190820139}
   m_Layer: 0
   m_Name: Head
   m_TagString: Boss
@@ -521,6 +522,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8072680527177495348, guid: 895246035ee52bd4587427ede77967b7, type: 3}
+--- !u!114 &190820139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190820134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a6d794dcd12bc4384dab1714555fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MyEnemyAttribs>k__BackingField: {fileID: 1622418169}
 --- !u!1 &193293470
 GameObject:
   m_ObjectHideFlags: 0

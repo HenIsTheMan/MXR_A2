@@ -13,7 +13,7 @@ namespace MXR {
         internal float CurrHealth {
             get => currHealth;
             set {
-                currHealth = value;
+                currHealth = Mathf.Clamp(value, 0.0f, MaxHealth);
             }
         }
 

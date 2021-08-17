@@ -67,8 +67,8 @@ namespace MXR {
 				BulletPool.DeactivateObj(gameObject);
 
 				if(hitInfo.transform.CompareTag("Boss")) {
-					Console.Log("Hit!");
-				}
+                    hitInfo.transform.GetComponent<EnemyAttribsLink>().MyEnemyAttribs.CurrHealth -= bulletProjectileData.Dmg;
+                }
 			}
 		}
 

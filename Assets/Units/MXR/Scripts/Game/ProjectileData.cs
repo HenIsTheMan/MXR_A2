@@ -5,6 +5,12 @@ namespace MXR {
     internal sealed class ProjectileData: ScriptableObject { //POD
         #region Fields
 
+        [field: SerializeField]
+        internal float Dmg {
+            get;
+            private set;
+        }
+
         internal float Spd {
             get;
             set;
@@ -42,6 +48,7 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal ProjectileData(): base() {
+            Dmg = 0.0f;
             Spd = 0.0f;
             MinSpd = 0.0f;
             MaxSpd = 0.0f;
