@@ -53,6 +53,12 @@ namespace MXR {
         [SerializeField]
         private float megaBulletDmgMultiplier;
 
+        [SerializeField]
+        private float megaBulletMaxScaleFactor;
+
+        [SerializeField]
+        private float megaBulletMaxDmg;
+
         #endregion
 
         #region Properties
@@ -83,6 +89,8 @@ namespace MXR {
             distOfMegaBulletFromPlayer = 0.0f;
             megaBulletScaleMultiplier = 0.0f;
             megaBulletDmgMultiplier = 0.0f;
+            megaBulletMaxScaleFactor = 0.0f;
+            megaBulletMaxDmg = 0.0f;
         }
 
         static PlayerBehavior() {
@@ -137,7 +145,16 @@ namespace MXR {
                         = transform.position + playerAttribs.Dir * distOfMegaBulletFromPlayer;
 
                     megaBulletProjectileBehavior.myTransform.localScale += Vector3.one * Time.deltaTime * megaBulletScaleMultiplier;
+                    megaBulletProjectileBehavior.myTransform.localScale = Vector3.Min(
+                        Vector3.one * megaBulletMaxScaleFactor,
+                        megaBulletProjectileBehavior.myTransform.localScale
+                    );
+
                     megaBulletProjectileBehavior.BulletProjectileData.Dmg += Time.deltaTime * megaBulletDmgMultiplier;
+                    megaBulletProjectileBehavior.BulletProjectileData.Dmg = Mathf.Min(
+                        megaBulletMaxDmg,
+                        megaBulletProjectileBehavior.BulletProjectileData.Dmg
+                    );
                 }
             }
 

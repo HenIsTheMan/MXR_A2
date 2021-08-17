@@ -3131,8 +3131,10 @@ MonoBehaviour:
   targetRotationZMultiplier: 40
   mouseDownTimeThreshold: 0.7
   distOfMegaBulletFromPlayer: 4
-  megaBulletScaleMultiplier: 4
-  megaBulletDmgMultiplier: 4
+  megaBulletScaleMultiplier: 2
+  megaBulletDmgMultiplier: 2
+  megaBulletMaxScaleFactor: 10
+  megaBulletMaxDmg: 10
 --- !u!114 &1253666295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4729,7 +4731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c47e46c2b80be4fa95cece0ccae7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 40
+  <MaxHealth>k__BackingField: 140
 --- !u!1 &1623213696
 GameObject:
   m_ObjectHideFlags: 0
