@@ -180,7 +180,8 @@ namespace MXR {
                 wormPartTransform.localPosition = displacementBetweenBodySegments;
 
 				foreach(Component script in scriptsToAdd) {
-                    CopyAndAddComponent(script, wormPartTransform.gameObject);
+                    _ = UnityEditorInternal.ComponentUtility.CopyComponent(script);
+                    _ = UnityEditorInternal.ComponentUtility.PasteComponentAsNew(wormPartTransform.gameObject);
 				}
 
 				boneRenderer.transforms[i + 1] = wormPartTransform;
@@ -195,7 +196,8 @@ namespace MXR {
                 wormPartTransform.localPosition = extraSegments[i].displacement;
 
                 foreach(Component script in scriptsToAdd) {
-                    CopyAndAddComponent(script, wormPartTransform.gameObject);
+                    _ = UnityEditorInternal.ComponentUtility.CopyComponent(script);
+                    _ = UnityEditorInternal.ComponentUtility.PasteComponentAsNew(wormPartTransform.gameObject);
                 }
             }
 
