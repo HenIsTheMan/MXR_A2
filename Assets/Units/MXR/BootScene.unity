@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c964973cff25242b9077fc0f8510f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 1280
-  height: 720
+  width: 1440
+  height: 810
   mode: 3
   preferredRefreshRate: 0
   newWindowTitle: 
