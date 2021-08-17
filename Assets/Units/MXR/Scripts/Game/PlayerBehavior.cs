@@ -109,6 +109,10 @@ namespace MXR {
             General.Console.Log("OnCollisionEnter()");
         }
 
+        private void OnTriggerExit() {
+            General.Console.Log("OnTriggerExit()");
+        }
+
         #endregion
 
         private void PlayerRotation() {
