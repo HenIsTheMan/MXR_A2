@@ -107,7 +107,7 @@ namespace MXR {
             }
 
             if(Input.GetMouseButtonUp(0)) {
-                if(mouseDownTime <= mouseDownTimeThreshold) { //Shoot normal bullet
+                if(mouseDownTime <= mouseDownTimeThreshold) { //Shoot regular bullet
                     BulletProjectileBehavior bulletProjectileBehavior
                         = playerAttribs.BulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
 
