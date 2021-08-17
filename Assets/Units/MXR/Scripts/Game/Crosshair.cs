@@ -59,7 +59,7 @@ namespace MXR {
         }
 
         private void Update() {
-            if(Physics.Raycast(transform.position, transform.rotation * -transform.forward, out RaycastHit hit, maxDist)) {
+            if(Physics.Raycast(transform.parent.position, transform.parent.rotation * transform.parent.forward, out RaycastHit hit, maxDist)) {
                 if(hit.transform.tag == targetTag) {
                     canAnimate = true;
                     shldAnimate = false;
