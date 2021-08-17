@@ -773,6 +773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 193293471}
   - component: {fileID: 193293472}
+  - component: {fileID: 193293473}
   m_Layer: 0
   m_Name: Bullets
   m_TagString: Untagged
@@ -795,6 +796,18 @@ Transform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &193293472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193293470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951bd065433117045805e2a9fa21bd4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &193293473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3138,9 +3151,13 @@ MonoBehaviour:
   <TurningAccelFactor>k__BackingField: -3
   <UpDownErrorMargin>k__BackingField: 4
   <TurningErrorMargin>k__BackingField: 4
-  <BulletPool>k__BackingField: {fileID: 193293472}
-  <BulletPoolSize>k__BackingField: 9999
-  <BulletPrefab>k__BackingField: {fileID: 9015087396125605245, guid: 26c4eb4f2a84bc54a92a3d833e406635,
+  <RegularBulletPool>k__BackingField: {fileID: 193293472}
+  <RegularBulletPoolSize>k__BackingField: 9999
+  <RegularBulletPrefab>k__BackingField: {fileID: 9015087396125605245, guid: 4a1afd1a37be9f345ad2fb5f46d0fba7,
+    type: 3}
+  <MegaBulletPool>k__BackingField: {fileID: 193293473}
+  <MegaBulletPoolSize>k__BackingField: 40
+  <MegaBulletPrefab>k__BackingField: {fileID: 9015087396125605245, guid: 26c4eb4f2a84bc54a92a3d833e406635,
     type: 3}
   <BulletParentTransform>k__BackingField: {fileID: 193293471}
 --- !u!65 &1253666296

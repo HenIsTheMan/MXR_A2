@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MegaBulletProjectileData
   m_EditorClassIdentifier: 
   <Dmg>k__BackingField: 1
-  <MinSpd>k__BackingField: 1
-  <MaxSpd>k__BackingField: 1
+  <MinSpd>k__BackingField: 7
+  <MaxSpd>k__BackingField: 7
   <AccelFactor>k__BackingField: 0
   <Lifetime>k__BackingField: 14

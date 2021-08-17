@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71305303b968db48b19d119b9825d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletProjectileData: {fileID: 11400000, guid: 7d5da6994faf5004e8efcf2384bcae3b,
+  bulletProjectileData: {fileID: 11400000, guid: 727762b3c97899d4c8061b22272eb0ee,
     type: 2}
   myTransform: {fileID: 9015087396125605244}
   ignoreMe:

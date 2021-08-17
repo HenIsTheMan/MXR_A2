@@ -42,6 +42,8 @@ namespace MXR {
         [SerializeField]
         private float mouseDownTimeThreshold;
 
+        private BulletProjectileBehavior megaBulletProjectileBehavior;
+
         #endregion
 
         #region Properties
@@ -67,6 +69,8 @@ namespace MXR {
 
             mouseDownTime = 0.0f;
             mouseDownTimeThreshold = 0.0f;
+
+            megaBulletProjectileBehavior = null;
         }
 
         static PlayerBehavior() {
@@ -102,20 +106,37 @@ namespace MXR {
         private void Update() {
             playerAttribs.Dir = transform.rotation * Vector3.forward;
 
-            if(Input.GetMouseButtonDown(0)) {
+            if(Input.GetMouseButton(0)) {
                 mouseDownTime += Time.deltaTime;
+
+                if(megaBulletProjectileBehavior == null) {
+                    if(mouseDownTime > mouseDownTimeThreshold) {
+                        megaBulletProjectileBehavior
+                            = playerAttribs.MegaBulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
+
+                        megaBulletProjectileBehavior.myTransform.position = transform.position + playerAttribs.Dir * 4.0f;
+                        megaBulletProjectileBehavior.BulletPool = playerAttribs.MegaBulletPool;
+                        megaBulletProjectileBehavior.Dir = Vector3.zero;
+                    }
+                } else {
+                    megaBulletProjectileBehavior.myTransform.position = transform.position + playerAttribs.Dir * 4.0f;
+                }
             }
 
             if(Input.GetMouseButtonUp(0)) {
                 if(mouseDownTime <= mouseDownTimeThreshold) { //Shoot regular bullet
-                    BulletProjectileBehavior bulletProjectileBehavior
-                        = playerAttribs.BulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
+					BulletProjectileBehavior regularBulletProjectileBehavior
+						= playerAttribs.RegularBulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
 
-                    bulletProjectileBehavior.myTransform.position = transform.position;
-                    bulletProjectileBehavior.BulletPool = playerAttribs.BulletPool;
-                    bulletProjectileBehavior.Dir = playerAttribs.Dir;
-                    bulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
-                } else {
+					regularBulletProjectileBehavior.myTransform.position = transform.position;
+					regularBulletProjectileBehavior.BulletPool = playerAttribs.RegularBulletPool;
+					regularBulletProjectileBehavior.Dir = playerAttribs.Dir;
+					regularBulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
+				} else {
+                    megaBulletProjectileBehavior.Dir = playerAttribs.Dir;
+                    megaBulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
+
+                    megaBulletProjectileBehavior = null;
                 }
 
                 mouseDownTime = 0.0f;

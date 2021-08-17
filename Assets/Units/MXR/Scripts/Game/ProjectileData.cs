@@ -8,7 +8,7 @@ namespace MXR {
         [field: SerializeField]
         internal float Dmg {
             get;
-            private set;
+            set;
         }
 
         internal float Spd {

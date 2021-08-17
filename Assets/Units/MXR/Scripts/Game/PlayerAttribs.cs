@@ -78,19 +78,37 @@ namespace MXR {
         }
 
         [field: SerializeField]
-        internal ObjPool BulletPool {
+        internal ObjPool RegularBulletPool {
             get;
             private set;
         }
 
         [field: SerializeField]
-        internal int BulletPoolSize {
+        internal int RegularBulletPoolSize {
             get;
             private set;
         }
 
         [field: SerializeField]
-        internal GameObject BulletPrefab {
+        internal GameObject RegularBulletPrefab {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal ObjPool MegaBulletPool {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal int MegaBulletPoolSize {
+            get;
+            private set;
+        }
+
+        [field: SerializeField]
+        internal GameObject MegaBulletPrefab {
             get;
             private set;
         }
@@ -122,9 +140,12 @@ namespace MXR {
             UpDownErrorMargin = 0.0f;
             TurningErrorMargin = 0.0f;
 
-            BulletPool = null;
-            BulletPoolSize = 0;
-            BulletPrefab = null;
+            RegularBulletPool = null;
+            RegularBulletPoolSize = 0;
+            RegularBulletPrefab = null;
+            MegaBulletPool = null;
+            MegaBulletPoolSize = 0;
+            MegaBulletPrefab = null;
             BulletParentTransform = null;
         }
 
@@ -147,7 +168,8 @@ namespace MXR {
             Spd = MinSpd;
             AccelFactor = RegularAccelFactor;
 
-            BulletPool.InitMe(BulletPoolSize, BulletPrefab, BulletParentTransform);
+            RegularBulletPool.InitMe(RegularBulletPoolSize, RegularBulletPrefab, BulletParentTransform);
+            MegaBulletPool.InitMe(MegaBulletPoolSize, MegaBulletPrefab, BulletParentTransform);
         }
 
         #endregion
