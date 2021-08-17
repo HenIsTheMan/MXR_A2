@@ -3130,6 +3130,9 @@ MonoBehaviour:
   targetRotationYMultiplier: 40
   targetRotationZMultiplier: 40
   mouseDownTimeThreshold: 0.7
+  distOfMegaBulletFromPlayer: 4
+  megaBulletScaleMultiplier: 4
+  megaBulletDmgMultiplier: 4
 --- !u!114 &1253666295
 MonoBehaviour:
   m_ObjectHideFlags: 0

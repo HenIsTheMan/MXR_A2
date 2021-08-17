@@ -44,6 +44,15 @@ namespace MXR {
 
         private BulletProjectileBehavior megaBulletProjectileBehavior;
 
+        [SerializeField]
+        private float distOfMegaBulletFromPlayer;
+
+        [SerializeField]
+        private float megaBulletScaleMultiplier;
+
+        [SerializeField]
+        private float megaBulletDmgMultiplier;
+
         #endregion
 
         #region Properties
@@ -71,6 +80,9 @@ namespace MXR {
             mouseDownTimeThreshold = 0.0f;
 
             megaBulletProjectileBehavior = null;
+            distOfMegaBulletFromPlayer = 0.0f;
+            megaBulletScaleMultiplier = 0.0f;
+            megaBulletDmgMultiplier = 0.0f;
         }
 
         static PlayerBehavior() {
@@ -114,12 +126,18 @@ namespace MXR {
                         megaBulletProjectileBehavior
                             = playerAttribs.MegaBulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
 
-                        megaBulletProjectileBehavior.myTransform.position = transform.position + playerAttribs.Dir * 4.0f;
+                        megaBulletProjectileBehavior.myTransform.position
+                            = transform.position + playerAttribs.Dir * distOfMegaBulletFromPlayer;
+
                         megaBulletProjectileBehavior.BulletPool = playerAttribs.MegaBulletPool;
                         megaBulletProjectileBehavior.Dir = Vector3.zero;
                     }
                 } else {
-                    megaBulletProjectileBehavior.myTransform.position = transform.position + playerAttribs.Dir * 4.0f;
+                    megaBulletProjectileBehavior.myTransform.position
+                        = transform.position + playerAttribs.Dir * distOfMegaBulletFromPlayer;
+
+                    megaBulletProjectileBehavior.myTransform.localScale += Vector3.one * Time.deltaTime * megaBulletScaleMultiplier;
+                    megaBulletProjectileBehavior.BulletProjectileData.Dmg += Time.deltaTime * megaBulletDmgMultiplier;
                 }
             }
 

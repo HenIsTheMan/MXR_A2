@@ -33,6 +33,10 @@ namespace MXR {
             set;
         }
 
+        internal ProjectileData BulletProjectileData {
+            get => bulletProjectileData;
+        }
+
         #endregion
 
         #region Ctors and Dtor
