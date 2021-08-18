@@ -72,6 +72,8 @@ namespace MXR {
             Vector3 lastLocalPos;
 
             while(animTime <= animDuration) {
+                yield return new WaitForEndOfFrame();
+
                 animTime += Time.deltaTime;
                 time = Mathf.Min(1.0f, animTime / animDuration);
 
@@ -86,8 +88,6 @@ namespace MXR {
                     Vector3.forward,
                     myTransform.localPosition - lastLocalPos
                 );
-
-                yield return null;
             }
         }
     }
