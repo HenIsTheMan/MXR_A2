@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RegularBulletProjectileData
   m_EditorClassIdentifier: 
   <Dmg>k__BackingField: 1
-  <MinSpd>k__BackingField: 10
-  <MaxSpd>k__BackingField: 40
-  <AccelFactor>k__BackingField: 10
+  <MinSpd>k__BackingField: 70
+  <MaxSpd>k__BackingField: 140
+  <AccelFactor>k__BackingField: 20
   <Lifetime>k__BackingField: 4

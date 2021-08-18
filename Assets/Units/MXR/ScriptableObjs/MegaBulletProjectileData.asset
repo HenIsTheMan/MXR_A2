@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e4cba707d53a541b00b23a9056fee0, type: 3}
   m_Name: MegaBulletProjectileData
   m_EditorClassIdentifier: 
-  <Dmg>k__BackingField: 1
-  <MinSpd>k__BackingField: 7
-  <MaxSpd>k__BackingField: 7
+  <Dmg>k__BackingField: 10
+  <MinSpd>k__BackingField: 70
+  <MaxSpd>k__BackingField: 70
   <AccelFactor>k__BackingField: 0
   <Lifetime>k__BackingField: 14
