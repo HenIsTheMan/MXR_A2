@@ -30,6 +30,23 @@ namespace MXR {
         [SerializeField]
         private float zMultiplier;
 
+        [SerializeField]
+        private float smallDelay;
+
+        private WaitForSeconds smallWaitForSeconds;
+
+        [SerializeField]
+        private float minPeriodicDelay;
+
+        [SerializeField]
+        private float maxPeriodicDelay;
+
+        [SerializeField]
+        private Vector3 minPos;
+
+        [SerializeField]
+        private Vector3 maxPos;
+
         #endregion
 
         #region Properties
@@ -50,6 +67,13 @@ namespace MXR {
             xMultiplier = 0.0f;
             yMultiplier = 0.0f;
             zMultiplier = 0.0f;
+
+            smallDelay = 0.0f;
+            smallWaitForSeconds = null;
+            minPeriodicDelay = 0.0f;
+            maxPeriodicDelay = 0.0f;
+            minPos = Vector3.zero;
+            maxPos = Vector3.zero;
         }
 
         static BossAI() {
@@ -60,10 +84,36 @@ namespace MXR {
         #region Unity User Callback Event Funcs
 
         private void Awake() {
-            _ = StartCoroutine(nameof(MoveBoss));
+            smallWaitForSeconds = new WaitForSeconds(smallDelay);
+
+            myTransform.localPosition = new Vector3(
+                Random.Range(minPos.x, maxPos.x),
+                Random.Range(minPos.y, maxPos.y),
+                Random.Range(minPos.z, maxPos.z)
+            );
+
+            _ = StartCoroutine(nameof(MobilizeBoss));
         }
 
         #endregion
+
+        private System.Collections.IEnumerator MobilizeBoss() {
+            while(true) {
+                yield return StartCoroutine(nameof(MoveBoss));
+
+                yield return smallWaitForSeconds;
+
+                myTransform.localPosition = new Vector3(
+                    Random.Range(minPos.x, maxPos.x),
+                    Random.Range(minPos.y, maxPos.y),
+                    Random.Range(minPos.z, maxPos.z)
+                );
+
+                myTransform.localRotation = Quaternion.identity;
+
+                yield return new WaitForSeconds(Random.Range(minPeriodicDelay, maxPeriodicDelay));
+            }
+        }
 
         private System.Collections.IEnumerator MoveBoss() {
             animTime = 0.0f;
@@ -78,7 +128,7 @@ namespace MXR {
             AnimationCurve zAnimCurve = zAnimCurves[Random.Range(0, zAnimCurves.Length)];
 
             Vector3 localScale = myTransform.localScale;
-            Vector3 transformForwardOG = transform.forward;
+            Vector3 transformForwardOG = myTransform.forward;
 
             float val = Mathf.PingPong(animTime, 2.0f) - 1.0f;
 
@@ -93,7 +143,7 @@ namespace MXR {
                     zAnimCurve.Evaluate(time) * zMultiplier * localScale.z
                 );
 
-                transform.localRotation = Quaternion.FromToRotation(
+                myTransform.localRotation = Quaternion.FromToRotation(
                     transformForwardOG,
                     myTransform.localPosition - lastLocalPos
                 ) * localRotationOG;
