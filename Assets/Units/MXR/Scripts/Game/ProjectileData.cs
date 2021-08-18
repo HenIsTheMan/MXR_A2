@@ -55,18 +55,6 @@ namespace MXR {
         #region Ctors and Dtor
 
         internal ProjectileData(): base() {
-            dmgOG = 0.0f;
-            minSpdOG = 0.0f;
-            maxSpdOG = 0.0f;
-            accelFactorOG = 0.0f;
-            lifetimeOG = 0.0f;
-
-            Dmg = 0.0f;
-            Spd = 0.0f;
-            MinSpd = 0.0f;
-            MaxSpd = 0.0f;
-            AccelFactor = 0.0f;
-            Lifetime = 0.0f;
         }
 
         static ProjectileData() {
@@ -74,7 +62,7 @@ namespace MXR {
 
         #endregion
 
-        private void Awake() {
+        internal void Init() {
             dmgOG = Dmg;
             minSpdOG = MinSpd;
             maxSpdOG = MaxSpd;
@@ -82,7 +70,7 @@ namespace MXR {
             lifetimeOG = Lifetime;
         }
 
-        private void OnDisable() {
+        internal void Reset() {
             Dmg = dmgOG;
             MinSpd = minSpdOG;
             MaxSpd = maxSpdOG;

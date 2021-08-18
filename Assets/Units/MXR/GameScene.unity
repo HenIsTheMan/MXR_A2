@@ -3197,7 +3197,7 @@ MonoBehaviour:
   targetRotationYMultiplier: 40
   targetRotationZMultiplier: 40
   mouseDownTimeThreshold: 0.7
-  distOfMegaBulletFromPlayer: 14
+  distOfBulletFromPlayer: 14
   megaBulletScaleMultiplier: 2
   megaBulletMaxScaleFactor: 7
   dmgPerUnitScale: 5

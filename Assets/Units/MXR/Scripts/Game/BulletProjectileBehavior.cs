@@ -56,6 +56,8 @@ namespace MXR {
         #region Unity User Callback Event Funcs
 
         private void OnEnable() {
+            bulletProjectileData.Init();
+
             _ = StartCoroutine(nameof(ProjectileLifetime));
         }
 
@@ -74,6 +76,10 @@ namespace MXR {
             if(collision.gameObject.CompareTag("Boss")) {
                 collision.gameObject.GetComponent<EnemyAttribsLink>().MyEnemyAttribs.CurrHealth -= bulletProjectileData.Dmg;
             }
+        }
+
+        private void OnDisable() {
+            bulletProjectileData.Reset();
         }
 
         #endregion

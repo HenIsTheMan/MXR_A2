@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 825035473370311205}
   - component: {fileID: 9015087396125605241}
   - component: {fileID: 9015087396125605246}
+  - component: {fileID: 1321584834099129450}
   - component: {fileID: 7559431262175536718}
   m_Layer: 0
   m_Name: RegularBullet
@@ -101,6 +102,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1321584834099129450
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015087396125605245}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!135 &7559431262175536718
 SphereCollider:
   m_ObjectHideFlags: 0

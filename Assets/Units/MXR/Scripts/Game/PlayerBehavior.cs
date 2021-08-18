@@ -45,7 +45,7 @@ namespace MXR {
         private BulletProjectileBehavior megaBulletProjectileBehavior;
 
         [SerializeField]
-        private float distOfMegaBulletFromPlayer;
+        private float distOfBulletFromPlayer;
 
         [SerializeField]
         private float megaBulletScaleMultiplier;
@@ -83,7 +83,7 @@ namespace MXR {
             mouseDownTimeThreshold = 0.0f;
 
             megaBulletProjectileBehavior = null;
-            distOfMegaBulletFromPlayer = 0.0f;
+            distOfBulletFromPlayer = 0.0f;
             megaBulletScaleMultiplier = 0.0f;
             megaBulletMaxScaleFactor = 0.0f;
             dmgPerUnitScale = 0.0f;
@@ -131,14 +131,14 @@ namespace MXR {
                             = playerAttribs.MegaBulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
 
                         megaBulletProjectileBehavior.myTransform.position
-                            = transform.position + playerAttribs.Dir * distOfMegaBulletFromPlayer;
+                            = transform.position + playerAttribs.Dir * distOfBulletFromPlayer;
 
                         megaBulletProjectileBehavior.BulletPool = playerAttribs.MegaBulletPool;
                         megaBulletProjectileBehavior.Dir = Vector3.zero;
                     }
                 } else {
                     megaBulletProjectileBehavior.myTransform.position
-                        = transform.position + playerAttribs.Dir * distOfMegaBulletFromPlayer;
+                        = transform.position + playerAttribs.Dir * distOfBulletFromPlayer;
 
                     megaBulletProjectileBehavior.myTransform.localScale += Vector3.one * Time.deltaTime * megaBulletScaleMultiplier;
                     megaBulletProjectileBehavior.myTransform.localScale = Vector3.Min(
@@ -155,7 +155,7 @@ namespace MXR {
 					BulletProjectileBehavior regularBulletProjectileBehavior
 						= playerAttribs.RegularBulletPool.ActivateObj().GetComponent<BulletProjectileBehavior>();
 
-					regularBulletProjectileBehavior.myTransform.position = transform.position;
+					regularBulletProjectileBehavior.myTransform.position = transform.position + playerAttribs.Dir * distOfBulletFromPlayer;
 					regularBulletProjectileBehavior.BulletPool = playerAttribs.RegularBulletPool;
 					regularBulletProjectileBehavior.Dir = playerAttribs.Dir;
 					regularBulletProjectileBehavior.PlayerSpd = playerAttribs.Spd;
