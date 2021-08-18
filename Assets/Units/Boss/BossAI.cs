@@ -69,15 +69,22 @@ namespace MXR {
             animTime = 0.0f;
             float time;
             Vector3 localPosOG = myTransform.localPosition;
+            Vector3 lastLocalPos;
 
             while(animTime <= animDuration) {
                 animTime += Time.deltaTime;
                 time = Mathf.Min(1.0f, animTime / animDuration);
 
+                lastLocalPos = myTransform.localPosition;
                 myTransform.localPosition = localPosOG + new Vector3(
                     xAnimCurve.Evaluate(time) * xMultiplier,
                     yAnimCurve.Evaluate(time) * yMultiplier,
                     zAnimCurve.Evaluate(time) * zMultiplier
+                );
+
+                transform.localRotation = Quaternion.FromToRotation(
+                    Vector3.forward,
+                    myTransform.localPosition - lastLocalPos
                 );
 
                 yield return null;
