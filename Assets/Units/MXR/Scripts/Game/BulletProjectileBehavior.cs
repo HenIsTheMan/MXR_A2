@@ -66,15 +66,15 @@ namespace MXR {
             bulletProjectileData.Spd = Mathf.Clamp(bulletProjectileData.Spd, bulletProjectileData.MinSpd, bulletProjectileData.MaxSpd);
 
             myTransform.position += Dir * (bulletProjectileData.Spd + PlayerSpd) * Time.fixedDeltaTime;
-
-			if(Physics.Linecast(oldPos, myTransform.position, out RaycastHit hitInfo, ~ignoreMe, QueryTriggerInteraction.Ignore)) {
-				BulletPool.DeactivateObj(gameObject);
-
-				if(hitInfo.transform.CompareTag("Boss")) {
-                    hitInfo.transform.GetComponent<EnemyAttribsLink>().MyEnemyAttribs.CurrHealth -= bulletProjectileData.Dmg;
-                }
-			}
 		}
+
+        private void OnCollisionEnter(Collision collision) {
+            BulletPool.DeactivateObj(gameObject);
+
+            if(collision.gameObject.CompareTag("Boss")) {
+                collision.gameObject.GetComponent<EnemyAttribsLink>().MyEnemyAttribs.CurrHealth -= bulletProjectileData.Dmg;
+            }
+        }
 
         #endregion
 
