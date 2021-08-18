@@ -2197,7 +2197,6 @@ GameObject:
   - component: {fileID: 1844255589}
   - component: {fileID: 1844255590}
   - component: {fileID: 1844255591}
-  - component: {fileID: 1844255592}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -2424,35 +2423,6 @@ MonoBehaviour:
   xMultiplier: 1
   yMultiplier: 20
   zMultiplier: 40
---- !u!114 &1844255592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844255585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ead68da09b5e82e4fa748be4b3dbcf1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initControl: {fileID: 0}
-  shldSelfInit: 1
-  shldUseUnscaled: 0
-  accessType: 0
-  isUpdating: 1
-  shldInitVals: 1
-  periodicDelay: 0
-  startTimeOffset: 0
-  animDuration: 2
-  countThreshold: 0
-  easingType: 30
-  shldAnimateX: 0
-  shldAnimateY: 0
-  shldAnimateZ: 1
-  startEulerAngles: {x: 0, y: 0, z: 0}
-  endEulerAngles: {x: 0, y: 0, z: 360}
-  myTransform: {fileID: 1844255586}
 --- !u!1 &1883228016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2464,6 +2434,7 @@ GameObject:
   - component: {fileID: 1883228017}
   - component: {fileID: 1883228019}
   - component: {fileID: 1883228018}
+  - component: {fileID: 1883228020}
   m_Layer: 0
   m_Name: Head
   m_TagString: Boss
@@ -2535,6 +2506,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883228016}
   m_Mesh: {fileID: 8072680527177495348, guid: 895246035ee52bd4587427ede77967b7, type: 3}
+--- !u!114 &1883228020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883228016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead68da09b5e82e4fa748be4b3dbcf1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initControl: {fileID: 0}
+  shldSelfInit: 1
+  shldUseUnscaled: 0
+  accessType: 0
+  isUpdating: 1
+  shldInitVals: 1
+  periodicDelay: 0
+  startTimeOffset: 0
+  animDuration: 2
+  countThreshold: 0
+  easingType: 30
+  shldAnimateX: 0
+  shldAnimateY: 0
+  shldAnimateZ: 1
+  startEulerAngles: {x: 0, y: 0, z: 0}
+  endEulerAngles: {x: 0, y: 0, z: 360}
+  myTransform: {fileID: 1883228017}
 --- !u!1 &1912734416
 GameObject:
   m_ObjectHideFlags: 0

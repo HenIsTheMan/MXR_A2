@@ -69,11 +69,10 @@ namespace MXR {
             animTime = 0.0f;
             float time;
             Vector3 localPosOG = myTransform.localPosition;
+            Quaternion localRotationOG = myTransform.localRotation;
             Vector3 lastLocalPos;
 
             while(animTime <= animDuration) {
-                yield return new WaitForEndOfFrame();
-
                 animTime += Time.deltaTime;
                 time = Mathf.Min(1.0f, animTime / animDuration);
 
@@ -87,7 +86,9 @@ namespace MXR {
                 transform.localRotation = Quaternion.FromToRotation(
                     Vector3.forward,
                     myTransform.localPosition - lastLocalPos
-                );
+                ) * localRotationOG;
+
+                yield return null;
             }
         }
     }
