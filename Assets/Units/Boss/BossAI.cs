@@ -78,20 +78,21 @@ namespace MXR {
             AnimationCurve zAnimCurve = zAnimCurves[Random.Range(0, zAnimCurves.Length)];
 
             Vector3 localScale = myTransform.localScale;
+            Vector3 transformForwardOG = transform.forward;
 
             while(animTime <= animDuration) {
                 animTime += Time.deltaTime;
                 time = Mathf.Min(1.0f, animTime / animDuration);
 
                 lastLocalPos = myTransform.localPosition;
-                myTransform.localPosition = localPosOG + new Vector3(
+                myTransform.localPosition = localPosOG + localRotationOG * new Vector3(
                     xAnimCurve.Evaluate(time) * xMultiplier * localScale.x,
                     yAnimCurve.Evaluate(time) * yMultiplier * localScale.y,
                     zAnimCurve.Evaluate(time) * zMultiplier * localScale.z
                 );
 
                 transform.localRotation = Quaternion.FromToRotation(
-                    Vector3.forward,
+                    transformForwardOG,
                     myTransform.localPosition - lastLocalPos
                 ) * localRotationOG;
 
