@@ -44,7 +44,7 @@ namespace MXR.General {
 		private static void SubSplashToIntroFadeTransitionPrelim() {
 			globalObj.canClickOnSplash = false;
 
-			AudioManager.globalObj.PlayMusicFadeIn("Theme" + Random.Range(0, 3), 2.0f);
+			//AudioManager.globalObj.PlayMusicFadeIn("Theme" + Random.Range(0, 3), 2.0f);
 
 			GameObject bloomVolGO = GameObject.Find("BloomVol");
 
@@ -55,11 +55,6 @@ namespace MXR.General {
 			_ = bloomVolGO.GetComponent<Volume>().sharedProfile.TryGet(out Bloom bloom);
 			bloom.intensity.value = 4.0f;
 			bloom.scatter.value = 0.7f;
-
-			PtrManager ptrManager = PtrManager.globalObj;
-			ptrManager.ChangeCursor("HexCursor", Vector2.zero, CursorModes.CursorMode.Auto);
-			ptrManager.DeactivateAllPtrTrails();
-			ptrManager.ActivatePtrTrail("HexPtrTrail");
 
 			GameObject camGO = GameObject.Find("IntroCam");
 			Camera camComponent = camGO.GetComponent<Camera>();
@@ -72,9 +67,6 @@ namespace MXR.General {
 
 			canvasGrpFadeAnim.animPreMidDelegate += () => {
 				GameObject.Find("GameTitleText").GetComponent<TextMtlFlashAcrossAnim>().IsUpdating = true;
-
-				ParticleSystem.EmissionModule myEmission = GameObject.Find("HexField").GetComponent<ParticleSystem>().emission;
-				myEmission.enabled = true;
 
 				GameObject instructionTextGO = GameObject.Find("InstructionText");
 				RectTransformScaleAnim[] scaleAnims = instructionTextGO.GetComponents<RectTransformScaleAnim>();
@@ -89,9 +81,7 @@ namespace MXR.General {
 				globalObj.sceneManager.UnloadScene(
 					UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
 					UnloadSceneTypes.UnloadSceneType.UnloadAllEmbeddedSceneObjs,
-					() => {
-						ptrManager.camComponent = camComponent;
-					}
+					null
 				);
 			};
 		}

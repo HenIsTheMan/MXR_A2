@@ -20,8 +20,6 @@ namespace MXR.General {
 
 				mainCam.clearFlags = CameraClearFlags.Nothing;
 
-				GameObject.Find("HexField").SetActive(false);
-
 				RectTransformScaleAnim[] scaleAnims = GameObject.Find("IntroBg").GetComponents<RectTransformScaleAnim>();
 				foreach(RectTransformScaleAnim scaleAnim in scaleAnims) {
 					scaleAnim.IsUpdating = true;

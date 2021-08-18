@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2853763002002699694}
   - component: {fileID: 2853763002002699695}
+  - component: {fileID: 6780523519428303510}
+  - component: {fileID: 5730653983167490780}
   m_Layer: 0
   m_Name: BloomVol
   m_TagString: Untagged
@@ -48,6 +50,64 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 772221acdd083054ba088a8aa9b43825, type: 2}
+--- !u!114 &6780523519428303510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853763002002699692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9313788b2a2f71489dc785fe3dfcdb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initControl: {fileID: 0}
+  shldSelfInit: 1
+  shldUseUnscaled: 0
+  accessType: 0
+  isUpdating: 0
+  shldInitVals: 1
+  periodicDelay: 1
+  startTimeOffset: 1.4
+  animDuration: 1
+  countThreshold: 0
+  easingType: 19
+  shldResetToOG: 1
+  myVol: {fileID: 2853763002002699695}
+  startIntensity: 60
+  endIntensity: 90
+  startScatter: 0.4
+  endScatter: 0.8
+--- !u!114 &5730653983167490780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853763002002699692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9313788b2a2f71489dc785fe3dfcdb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initControl: {fileID: 0}
+  shldSelfInit: 1
+  shldUseUnscaled: 0
+  accessType: 0
+  isUpdating: 0
+  shldInitVals: 0
+  periodicDelay: 1
+  startTimeOffset: 2.4
+  animDuration: 1
+  countThreshold: 0
+  easingType: 29
+  shldResetToOG: 0
+  myVol: {fileID: 2853763002002699695}
+  startIntensity: 90
+  endIntensity: 60
+  startScatter: 0.8
+  endScatter: 0.4
 --- !u!1 &2853763002287998506
 GameObject:
   m_ObjectHideFlags: 0
