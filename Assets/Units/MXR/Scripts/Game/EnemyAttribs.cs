@@ -14,6 +14,10 @@ namespace MXR {
             get => currHealth;
             set {
                 currHealth = Mathf.Clamp(value, 0.0f, MaxHealth);
+
+                if(Mathf.Approximately(currHealth, 0.0f)) {
+                    LoadGameEndScene.globalObj.OnGameEnd(true);
+                }
             }
         }
 

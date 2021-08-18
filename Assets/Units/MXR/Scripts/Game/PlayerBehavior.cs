@@ -172,6 +172,8 @@ namespace MXR {
 
         private void OnCollisionEnter() {
             General.Console.Log("OnCollisionEnter()");
+
+            LoadGameEndScene.globalObj.OnGameEnd(false);
         }
 
         private void OnTriggerExit() {

@@ -20,7 +20,7 @@ namespace MXR.General {
 			camComponent.clearFlags = CameraClearFlags.SolidColor;
 			camComponent.GetComponent<UniversalAdditionalCameraData>().renderPostProcessing = true;
 
-			PtrManager.globalObj.camComponent = camComponent;
+			//PtrManager.globalObj.camComponent = camComponent;
 
 			GameObject toneMappingVolGO = GameObject.Find("ToneMappingVol");
 			if(toneMappingVolGO != null) {
