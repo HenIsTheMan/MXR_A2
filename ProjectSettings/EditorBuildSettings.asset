@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Units/MXR/IntroScene.unity
     guid: aa200efb866eebe418b72c6a674552f2
   - enabled: 1
+    path: Assets/Units/MXR/MenuScene.unity
+    guid: 69fd46da4ef1bad4da8554fd1a0237fa
+  - enabled: 1
     path: Assets/Units/MXR/GameScene.unity
     guid: c77502ddc12c40d41a71ee6734a840fd
   - enabled: 1
-    path: Assets/Units/MXR/MenuScene.unity
-    guid: 764636f8643559c45a1f55e738a86638
+    path: Assets/Units/MXR/GameEndScene.unity
+    guid: 45275e7e30aaa8e44b0289a712678ad2
   m_configObjects: {}
