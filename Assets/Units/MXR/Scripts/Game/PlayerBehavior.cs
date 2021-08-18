@@ -101,6 +101,10 @@ namespace MXR {
         }
 
         private void FixedUpdate() {
+            if(!GameControl.globalObj.hasGameStarted) {
+                return;
+            }
+
             playerAttribs.Spd += playerAttribs.AccelFactor * Time.fixedDeltaTime;
             playerAttribs.Spd = Mathf.Clamp(playerAttribs.Spd, playerAttribs.MinSpd, playerAttribs.MaxSpd);
 
@@ -120,6 +124,10 @@ namespace MXR {
         }
 
         private void Update() {
+            if(!GameControl.globalObj.hasGameStarted) {
+                return;
+            }
+
             playerAttribs.Dir = transform.rotation * Vector3.forward;
 
             if(Input.GetMouseButton(0)) {
