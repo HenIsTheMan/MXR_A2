@@ -80,13 +80,15 @@ namespace MXR {
             Vector3 localScale = myTransform.localScale;
             Vector3 transformForwardOG = transform.forward;
 
+            float val = Mathf.PingPong(animTime, 2.0f) - 1.0f;
+
             while(animTime <= animDuration) {
                 animTime += Time.deltaTime;
                 time = Mathf.Min(1.0f, animTime / animDuration);
 
                 lastLocalPos = myTransform.localPosition;
                 myTransform.localPosition = localPosOG + localRotationOG * new Vector3(
-                    xAnimCurve.Evaluate(time) * xMultiplier * localScale.x,
+                    xAnimCurve.Evaluate(time) * xMultiplier * localScale.x * val,
                     yAnimCurve.Evaluate(time) * yMultiplier * localScale.y,
                     zAnimCurve.Evaluate(time) * zMultiplier * localScale.z
                 );
