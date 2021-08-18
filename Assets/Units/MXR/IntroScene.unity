@@ -1239,7 +1239,7 @@ MonoBehaviour:
   startAlpha: 1
   endAlpha: 0
   shldResetToOG: 1
-  mtl: {fileID: 2100000, guid: 28261fd4c1a48df499549c86baff4b4c, type: 2}
+  mtl: {fileID: 2100000, guid: 102079092354a194c8607989c48de378, type: 2}
   barCount: 10
   barOrientation: 0
   tmpTextComponent: {fileID: 1788850111}
@@ -1484,7 +1484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2115559201
 Transform:
   m_ObjectHideFlags: 0
