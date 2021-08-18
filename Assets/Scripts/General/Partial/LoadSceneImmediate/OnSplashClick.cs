@@ -6,7 +6,6 @@ namespace MXR.General {
 			if(globalObj.canClickOnSplash
 				&& UnityEngine.SceneManagement.SceneManager.GetSceneByName("IntroScene").isLoaded
 			) {
-				GameObject.Find("Feathers").SetActive(false);
 				GameObject.Find("ProxyCam").SetActive(false);
 
 				SubSplashToIntroFadeTransitionPrelim();

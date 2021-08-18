@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 661617125}
   - component: {fileID: 661617126}
   m_Layer: 0
-  m_Name: LoadGameScene
+  m_Name: LoadSplashScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,10 +210,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initControl: {fileID: 384969304}
-  sceneName: GameScene
+  sceneName: SplashScene
   type: 0
   prelimMethodName: 
-  doneMethodName: 
+  doneMethodName: BootToSplashDone
 --- !u!1 &1044726623
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 1302055292}
   - component: {fileID: 1302055291}
   - component: {fileID: 1302055293}
+  - component: {fileID: 1302055296}
   m_Layer: 0
   m_Name: CreateIfDoesNotExistMaster
   m_TagString: Untagged
@@ -376,6 +377,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5612222903402971655, guid: 0ef397ac24fc32f429cd7de306ad4df7, type: 3}
   myName: DebugText
+  pos: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0, w: 1}
+  parentTransform: {fileID: 0}
+--- !u!114 &1302055296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302055289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7fb56aa4648342b23326e7662aac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2853763002287998506, guid: e456c1fe76678bd4e9711f8a59613c4c, type: 3}
+  myName: Vols
   pos: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   parentTransform: {fileID: 0}
