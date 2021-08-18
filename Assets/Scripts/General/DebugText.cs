@@ -17,7 +17,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace IWP.General {
+namespace MXR.General {
     internal sealed class DebugText: MonoBehaviour {
 		#region Fields
 

@@ -9,6 +9,9 @@ namespace MXR.General {
 		[SerializeField]
 		private InitControl initControl;
 
+		private bool canClickOnSplash;
+		private bool canClickOnIntro;
+
 		private SceneManager sceneManager;
 
 		[SerializeField]
@@ -36,6 +39,9 @@ namespace MXR.General {
 
 		internal LoadSceneImmediate(): base() {
 			initControl = null;
+
+			canClickOnSplash = true;
+			canClickOnIntro = true;
 
 			sceneManager = null;
 
