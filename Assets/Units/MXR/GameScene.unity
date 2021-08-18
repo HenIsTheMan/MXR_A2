@@ -3199,9 +3199,8 @@ MonoBehaviour:
   mouseDownTimeThreshold: 0.7
   distOfMegaBulletFromPlayer: 4
   megaBulletScaleMultiplier: 2
-  megaBulletDmgMultiplier: 2
-  megaBulletMaxScaleFactor: 25
-  megaBulletMaxDmg: 25
+  megaBulletMaxScaleFactor: 7
+  dmgPerUnitScale: 5
 --- !u!114 &1253666295
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,13 +51,10 @@ namespace MXR {
         private float megaBulletScaleMultiplier;
 
         [SerializeField]
-        private float megaBulletDmgMultiplier;
-
-        [SerializeField]
         private float megaBulletMaxScaleFactor;
 
         [SerializeField]
-        private float megaBulletMaxDmg;
+        private float dmgPerUnitScale;
 
         #endregion
 
@@ -88,9 +85,8 @@ namespace MXR {
             megaBulletProjectileBehavior = null;
             distOfMegaBulletFromPlayer = 0.0f;
             megaBulletScaleMultiplier = 0.0f;
-            megaBulletDmgMultiplier = 0.0f;
             megaBulletMaxScaleFactor = 0.0f;
-            megaBulletMaxDmg = 0.0f;
+            dmgPerUnitScale = 0.0f;
         }
 
         static PlayerBehavior() {
@@ -150,11 +146,7 @@ namespace MXR {
                         megaBulletProjectileBehavior.myTransform.localScale
                     );
 
-                    megaBulletProjectileBehavior.BulletProjectileData.Dmg += Time.deltaTime * megaBulletDmgMultiplier;
-                    megaBulletProjectileBehavior.BulletProjectileData.Dmg = Mathf.Min(
-                        megaBulletMaxDmg,
-                        megaBulletProjectileBehavior.BulletProjectileData.Dmg
-                    );
+                    megaBulletProjectileBehavior.BulletProjectileData.Dmg = dmgPerUnitScale * megaBulletProjectileBehavior.myTransform.localScale.x;
                 }
             }
 
